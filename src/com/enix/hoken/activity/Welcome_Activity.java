@@ -35,7 +35,7 @@ import android.database.sqlite.SQLiteDatabase;
  * 
  */
 public class Welcome_Activity extends Activity implements Runnable {
-	static final String Activity_ID = "Welcome";
+	static final String Activity_ID = "Welcome_Activity";
 
 	SQLiteDatabase sqldb;
 	DbHelper helper;

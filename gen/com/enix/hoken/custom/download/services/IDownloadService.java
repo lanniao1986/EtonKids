@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: G:\\WorkSpace\\EtonKids\\src\\com\\enix\\hoken\\custom\\download\\services\\IDownloadService.aidl
+ * Original file: C:\\Documents and Settings\\gumc\\git\\EtonKids\\src\\com\\enix\\hoken\\custom\\download\\services\\IDownloadService.aidl
  */
 package com.enix.hoken.custom.download.services;
 public interface IDownloadService extends android.os.IInterface
