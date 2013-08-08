@@ -318,6 +318,9 @@ public class CommonUtil {
 	public static void showConfirmDialog(String title, String message,
 			String[] buttonText, Context context,
 			DialogInterface.OnClickListener onPositiveClickListener) {
+		if (context == null) {
+			context = mActivity;
+		}
 		AlertDialog.Builder builder = new Builder(context);
 		if (buttonText == null || buttonText.length < 2) {
 			buttonText = new String[] { "确定", "取消" };
@@ -457,6 +460,16 @@ public class CommonUtil {
 	 */
 	public static void showLongToast(Context mContex, String msg) {
 		Toast.makeText(mContex, msg, Toast.LENGTH_LONG).show();
+	}
+
+	/**
+	 * 快速显示长Toast
+	 * 
+	 * @param mContext
+	 * @param msg
+	 */
+	public static void showLongToast(String msg) {
+		Toast.makeText(mActivity, msg, Toast.LENGTH_LONG).show();
 	}
 
 	/**

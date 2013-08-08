@@ -180,7 +180,8 @@ public class DownloadTask extends AsyncTask<Void, Integer, Long> {
 		} catch (NetworkErrorException e) {
 			error = e;
 		} catch (FileAlreadyExistException e) {
-			error = e;
+			this.onCancelled();
+			listener.restartDownload(this);
 		} catch (NoMemoryException e) {
 			error = e;
 		} catch (IOException e) {
@@ -271,9 +272,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Long> {
 			if (DEBUG) {
 				Log.v(null, "Output file already exists. Skipping download.");
 			}
-
-			throw new FileAlreadyExistException(
-					"Output file already exists. Skipping download.");
+			throw new FileAlreadyExistException("需要下载的文件已经存在!");
 		} else if (tempFile.exists()) {
 			httpGet.addHeader("Range", "bytes=" + tempFile.length() + "-");
 			previousFileSize = tempFile.length();
@@ -313,8 +312,8 @@ public class DownloadTask extends AsyncTask<Void, Integer, Long> {
 
 		if ((previousFileSize + bytesCopied) != totalSize && totalSize != -1
 				&& !interrupt) {
-			throw new IOException("Download incomplete: " + bytesCopied
-					+ " != " + totalSize);
+			throw new IOException("下载未能正常完成,当前现在量为: " + bytesCopied + " != "
+					+ totalSize);
 		}
 
 		if (DEBUG) {
@@ -358,7 +357,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Long> {
 				 * check network
 				 */
 				if (!CommonUtil.isNetworkAvailable(context)) {
-					throw new NetworkErrorException("Network blocked.");
+					throw new NetworkErrorException("网络不可用,请检查网络设置!.");
 				}
 
 				if (networkSpeed == 0) {

@@ -15,6 +15,13 @@ public interface DownloadTaskListener {
 	public void updateProcess(DownloadTask task);
 
 	/**
+	 * 重启下载任务
+	 * 
+	 * @param task
+	 */
+	public void restartDownload(DownloadTask task);
+
+	/**
 	 * 完成下载
 	 * 
 	 * @param task

@@ -2,13 +2,11 @@ package com.enix.hoken.custom.download.services;
 
 import com.enix.hoken.custom.download.utils.ConfigUtils;
 import com.enix.hoken.custom.download.utils.DownLoadIntents;
-
 import com.enix.hoken.util.CommonUtil;
-
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.widget.Toast;
-
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -79,17 +77,18 @@ public class DownloadManager extends Thread {
 	public void addTask(String url) {
 
 		if (!CommonUtil.isSDCardPresent()) {
-			Toast.makeText(mContext, "未发现SD卡", Toast.LENGTH_LONG).show();
+			CommonUtil.showShortToast(mContext, "未发现SD卡");
+
 			return;
 		}
 
 		if (!CommonUtil.isSdCardWrittenable()) {
-			Toast.makeText(mContext, "SD卡不能读写", Toast.LENGTH_LONG).show();
+			CommonUtil.showShortToast(mContext, "SD卡没有挂载为可写状态!");
 			return;
 		}
 
 		if (getTotalTaskCount() >= MAX_TASK_COUNT) {
-			Toast.makeText(mContext, "任务列表已满", Toast.LENGTH_LONG).show();
+			CommonUtil.showShortToast(mContext, "任务列表已满!");
 			return;
 		}
 
@@ -273,6 +272,8 @@ public class DownloadManager extends Thread {
 					file.delete();
 
 				task.onCancelled();
+				CommonUtil.printDebugMsg("DownloadManager:deleteTask URL="
+						+ url);
 				completeTask(task);
 				return;
 			}
@@ -298,6 +299,7 @@ public class DownloadManager extends Thread {
 			task = mPausingTasks.get(i);
 			if (task != null && task.getUrl().equals(url)) {
 				continueTask(task);
+				CommonUtil.printDebugMsg("continueTask URL=" + url);
 			}
 
 		}
@@ -410,8 +412,10 @@ public class DownloadManager extends Thread {
 			public void errorDownload(DownloadTask task, Throwable error) {
 
 				if (error != null) {
-					Toast.makeText(mContext, "Error: " + error.getMessage(),
-							Toast.LENGTH_LONG).show();
+
+					CommonUtil.showShortToast(mContext,
+							"Error: " + error.getMessage());
+
 				}
 
 				// Intent errorIntent = new
@@ -428,6 +432,25 @@ public class DownloadManager extends Thread {
 				// && error != DownloadTask.ERROR_TIME_OUT) {
 				// completeTask(task);
 				// }
+			}
+
+			@Override
+			public void restartDownload(final DownloadTask task) {
+//				CommonUtil.showConfirmDialog("是否重新下载", "当前任务的下载文件已存在是否重新下载?",
+//						new String[] { "是", "否" }, mContext,
+//						new OnClickListener() {
+//
+//							@Override
+//							public void onClick(DialogInterface dialog,
+//									int which) {
+
+								deleteTask(task.getUrl());
+								addTask(task.getUrl());
+								CommonUtil
+										.printDebugMsg("DownloadManager:restartDownload");
+//							}
+//						});
+
 			}
 		};
 		return new DownloadTask(mContext, url, CommonUtil.getDownLoadPath(),

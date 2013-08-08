@@ -33,8 +33,8 @@ public class DownloadListActivity extends SubActivity {
 	private DownloadListAdapter mDownloadListAdapter;
 	private DownLoadReceiver mDownLoadReceiver;
 	private int urlIndex = 0;
-	private static final String APK_OFFICE = "http://211.167.105.80/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/wdl.cache.ijinshan.com/wps/download/android/kingsoftoffice_2052/moffice_2052_wpscn.apk";
-	private static final String APK_MAXTHON = "http://211.167.105.112:81/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/dl.maxthon.cn/mobile/download/mx/100/MaxthonCloudBrowser_Android_v4.0.6.2000.apk";
+	public static final String APK_OFFICE = "http://211.167.105.80/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/wdl.cache.ijinshan.com/wps/download/android/kingsoftoffice_2052/moffice_2052_wpscn.apk";
+	public static final String APK_MAXTHON = "http://211.167.105.112:81/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/dl.maxthon.cn/mobile/download/mx/100/MaxthonCloudBrowser_Android_v4.0.6.2000.apk";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

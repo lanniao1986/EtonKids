@@ -1,8 +1,13 @@
 package com.enix.hoken.custom.mainview;
 
+import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import net.tsz.afinal.FinalHttp;
+import net.tsz.afinal.http.AjaxCallBack;
+import net.tsz.afinal.http.HttpHandler;
 
 import android.content.DialogInterface;
 import android.os.Handler;
@@ -14,6 +19,7 @@ import android.view.*;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.enix.hoken.activity.DesktopActivity;
@@ -37,7 +43,10 @@ public class DownLoadMainView extends MainView {
 	private Button mBtnPlugin;
 	private Button mBtnManager;
 	private TextView mListEmpty;
+
 	private SimpleDateFormat format = new SimpleDateFormat("上次更新于  M月d日 HH:mm");
+	HttpHandler<File> mHandler;
+	FinalHttp mFinalHttp;
 
 	public DownLoadMainView(DesktopActivity activity) {
 		super(activity, R.layout.lay_download);
@@ -70,6 +79,14 @@ public class DownLoadMainView extends MainView {
 			}
 
 		});
+		mBtnRecommand.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
+
 	}
 
 	public void initView() {
