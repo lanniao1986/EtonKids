@@ -4,6 +4,7 @@ public class DownLoadIntents {
 
 	public static final String TYPE = "type";
 	public static final String PROCESS_SPEED = "process_speed";
+    public static final String PROCESS_SIZE = "process_size";
 	public static final String PROCESS_PROGRESS = "process_progress";
 	public static final String URL = "url";
 	public static final String ERROR_CODE = "error_code";

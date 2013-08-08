@@ -1,4 +1,4 @@
-package com.enix.hoken.custom.download;
+package com.enix.hoken.activity;
 
 import com.enix.hoken.basic.SubActivity;
 import com.enix.hoken.custom.download.services.TrafficCounterService;
@@ -26,12 +26,12 @@ import java.io.IOException;
 public class DownloadListActivity extends SubActivity {
 
 	private ListView downloadList;
-	private Button addButton;
-	private Button pauseButton;
-	private Button deleteButton;
-	private Button trafficButton;
-	private DownloadListAdapter downloadListAdapter;
-	private DownLoadReceiver mReceiver;
+	private Button mBtnAdd;
+	private Button mBtnPause;
+	private Button mBtnDelete;
+	private Button mBtnTraffic;
+	private DownloadListAdapter mDownloadListAdapter;
+	private DownLoadReceiver mDownLoadReceiver;
 	private int urlIndex = 0;
 	private static final String APK_OFFICE = "http://211.167.105.80/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/wdl.cache.ijinshan.com/wps/download/android/kingsoftoffice_2052/moffice_2052_wpscn.apk";
 	private static final String APK_MAXTHON = "http://211.167.105.112:81/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/dl.maxthon.cn/mobile/download/mx/100/MaxthonCloudBrowser_Android_v4.0.6.2000.apk";
@@ -61,10 +61,10 @@ public class DownloadListActivity extends SubActivity {
 	public void findView() {
 		super.findView();
 		downloadList = (ListView) findViewById(R.id.download_list);
-		addButton = (Button) findViewById(R.id.btn_add);
-		pauseButton = (Button) findViewById(R.id.btn_pause_all);
-		deleteButton = (Button) findViewById(R.id.btn_delete_all);
-		trafficButton = (Button) findViewById(R.id.btn_traffic);
+		mBtnAdd = (Button) findViewById(R.id.btn_add);
+		mBtnPause = (Button) findViewById(R.id.btn_pause_all);
+		mBtnDelete = (Button) findViewById(R.id.btn_delete_all);
+		mBtnTraffic = (Button) findViewById(R.id.btn_traffic);
 	}
 
 	public void initView() {
@@ -72,12 +72,13 @@ public class DownloadListActivity extends SubActivity {
 		setTitle("下载管理列表");
 		mExtend1.setVisibility(View.GONE);
 		mExtend2.setVisibility(View.GONE);
-		downloadListAdapter = new DownloadListAdapter(this);
-		downloadList.setAdapter(downloadListAdapter);
+		mDownloadListAdapter = new DownloadListAdapter(this);
+		downloadList.setAdapter(mDownloadListAdapter);
 		// downloadManager.startManage();
+		// 启动流量监控服务
 		Intent trafficIntent = new Intent(this, TrafficCounterService.class);
 		startService(trafficIntent);
-
+		// 启动下载服务
 		Intent downloadIntent = new Intent(
 				"com.enix.hoken.custom.download.services.IDownloadService");
 		downloadIntent.putExtra(DownLoadIntents.TYPE,
@@ -87,16 +88,16 @@ public class DownloadListActivity extends SubActivity {
 		// // handle intent
 		// Intent intent = getIntent();
 		// handleIntent(intent);
-		mReceiver = new DownLoadReceiver();
+		mDownLoadReceiver = new DownLoadReceiver();
 		IntentFilter filter = new IntentFilter();
-		filter.addAction("com.enix.hoken.custom.download.DownloadListActivity");
-		registerReceiver(mReceiver, filter);
+		filter.addAction("com.enix.hoken.activity.DownloadListActivity");
+		registerReceiver(mDownLoadReceiver, filter);
 
 	}
 
 	public void setListener() {
 		super.setListener();
-		addButton.setOnClickListener(new View.OnClickListener() {
+		mBtnAdd.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -116,7 +117,7 @@ public class DownloadListActivity extends SubActivity {
 			}
 		});
 
-		pauseButton.setOnClickListener(new View.OnClickListener() {
+		mBtnPause.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -124,7 +125,7 @@ public class DownloadListActivity extends SubActivity {
 			}
 		});
 
-		deleteButton.setOnClickListener(new View.OnClickListener() {
+		mBtnDelete.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -141,7 +142,7 @@ public class DownloadListActivity extends SubActivity {
 			}
 		});
 
-		trafficButton.setOnClickListener(new View.OnClickListener() {
+		mBtnTraffic.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -156,11 +157,17 @@ public class DownloadListActivity extends SubActivity {
 	@Override
 	protected void onDestroy() {
 
-		unregisterReceiver(mReceiver);
+		unregisterReceiver(mDownLoadReceiver);
 
 		super.onDestroy();
 	}
 
+	/**
+	 * 接收下载服务的广播
+	 * 
+	 * @author gumc
+	 * 
+	 */
 	public class DownLoadReceiver extends BroadcastReceiver {
 
 		@Override
@@ -173,25 +180,24 @@ public class DownloadListActivity extends SubActivity {
 		private void handleIntent(Intent intent) {
 
 			if (intent != null
-					&& intent
-							.getAction()
-							.equals("com.enix.hoken.custom.download.DownloadListActivity")) {
+					&& intent.getAction().equals(
+							"com.enix.hoken.activity.DownloadListActivity")) {
 				int type = intent.getIntExtra(DownLoadIntents.TYPE, -1);
 				String url;
 
-				switch (type) {
+				switch (type) {// 判断操作类型
 				case DownLoadIntents.Types.ADD:
 					url = intent.getStringExtra(DownLoadIntents.URL);
 					boolean isPaused = intent.getBooleanExtra(
 							DownLoadIntents.IS_PAUSED, false);
 					if (!TextUtils.isEmpty(url)) {
-						downloadListAdapter.addItem(url, isPaused);
+						mDownloadListAdapter.addItem(url, isPaused);
 					}
 					break;
 				case DownLoadIntents.Types.COMPLETE:
 					url = intent.getStringExtra(DownLoadIntents.URL);
 					if (!TextUtils.isEmpty(url)) {
-						downloadListAdapter.removeItem(url);
+						mDownloadListAdapter.removeItem(url);
 					}
 					break;
 				case DownLoadIntents.Types.PROCESS:
@@ -202,6 +208,7 @@ public class DownloadListActivity extends SubActivity {
 							.setData(
 									url,
 									intent.getStringExtra(DownLoadIntents.PROCESS_SPEED),
+									intent.getStringExtra(DownLoadIntents.PROCESS_SIZE),
 									intent.getStringExtra(DownLoadIntents.PROCESS_PROGRESS));
 					break;
 				case DownLoadIntents.Types.ERROR:

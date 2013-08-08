@@ -23,6 +23,7 @@ public class ViewHolder {
 	public TextView titleText;
 	public ProgressBar progressBar;
 	public TextView speedText;
+	public TextView sizeText;
 	public Button pauseButton;
 	public Button deleteButton;
 	public Button continueButton;
@@ -33,6 +34,8 @@ public class ViewHolder {
 		if (parentView != null) {
 			titleText = (TextView) parentView.findViewById(R.id.title);
 			speedText = (TextView) parentView.findViewById(R.id.speed);
+			sizeText = (TextView) parentView.findViewById(R.id.size);
+
 			progressBar = (ProgressBar) parentView
 					.findViewById(R.id.progress_bar);
 			pauseButton = (Button) parentView.findViewById(R.id.btn_pause);
@@ -55,8 +58,7 @@ public class ViewHolder {
 
 	public void setData(HashMap<Integer, String> item) {
 		if (hasInited) {
-			titleText
-					.setText(CommonUtil.getFileNameFromUrl(item.get(KEY_URL)));
+			titleText.setText(CommonUtil.getFileNameFromUrl(item.get(KEY_URL)));
 			speedText.setText(item.get(KEY_SPEED));
 			String progress = item.get(KEY_PROGRESS);
 			if (TextUtils.isEmpty(progress)) {
@@ -77,18 +79,27 @@ public class ViewHolder {
 		}
 	}
 
-	public void setData(String url, String speed, String progress) {
-		setData(url, speed, progress, false + "");
+	/**
+	 * 更新下载状态信息
+	 * 
+	 * @param url
+	 * @param speed
+	 * @param progress
+	 */
+	public void setData(String url, String speed, String size, String progress) {
+		setData(url, speed, size, progress, false + "");
 	}
 
-	public void setData(String url, String speed, String progress,
+	public void setData(String url, String speed, String size, String progress,
 			String isPaused) {
 		if (hasInited) {
 			HashMap<Integer, String> item = getItemDataMap(url, speed,
 					progress, isPaused);
-
-			titleText
-					.setText(CommonUtil.getFileNameFromUrl(item.get(KEY_URL)));
+			sizeText.setText(size);
+			titleText.setText(CommonUtil.getFileNameFromUrl(item.get(KEY_URL)));
+			if (speed.isEmpty()) {
+				speed = "0KB/秒";
+			}
 			speedText.setText(speed);
 			if (TextUtils.isEmpty(progress)) {
 				progressBar.setProgress(0);

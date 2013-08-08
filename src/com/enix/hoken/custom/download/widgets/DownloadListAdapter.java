@@ -42,6 +42,14 @@ public class DownloadListAdapter extends BaseAdapter {
 		addItem(url, false);
 	}
 
+	/**
+	 * 添加列表项
+	 * 
+	 * @param url
+	 *            下载对象的URL
+	 * @param isPaused
+	 *            是否暂停状态
+	 */
 	public void addItem(String url, boolean isPaused) {
 		HashMap<Integer, String> item = ViewHolder.getItemDataMap(url, null,
 				null, isPaused + "");
@@ -49,6 +57,11 @@ public class DownloadListAdapter extends BaseAdapter {
 		this.notifyDataSetChanged();
 	}
 
+	/**
+	 * 列表中移除指定URL的列表项
+	 * 
+	 * @param url
+	 */
 	public void removeItem(String url) {
 		String tmp;
 		for (int i = 0; i < dataList.size(); i++) {
@@ -84,6 +97,12 @@ public class DownloadListAdapter extends BaseAdapter {
 		return convertView;
 	}
 
+	/**
+	 * 下载列表功能按钮事件
+	 * 
+	 * @author gumc
+	 * 
+	 */
 	private class DownloadBtnListener implements View.OnClickListener {
 		private String url;
 		private ViewHolder mViewHolder;
@@ -99,19 +118,22 @@ public class DownloadListAdapter extends BaseAdapter {
 					"com.enix.hoken.custom.download.services.IDownloadService");
 
 			switch (v.getId()) {
+			// 继续按钮事件
 			case R.id.btn_continue:
 				// mDownloadManager.continueTask(mPosition);
 				downloadIntent.putExtra(DownLoadIntents.TYPE,
 						DownLoadIntents.Types.CONTINUE);
 				downloadIntent.putExtra(DownLoadIntents.URL, url);
 				mContext.startService(downloadIntent);
-
+				// 继续下载按钮消失,并显示暂停按钮
 				mViewHolder.continueButton.setVisibility(View.GONE);
 				mViewHolder.pauseButton.setVisibility(View.VISIBLE);
 				break;
+			// 暂停按钮事件
 			case R.id.btn_pause:
 				// mDownloadManager.pauseTask(mPosition);
-				downloadIntent.putExtra(DownLoadIntents.TYPE, DownLoadIntents.Types.PAUSE);
+				downloadIntent.putExtra(DownLoadIntents.TYPE,
+						DownLoadIntents.Types.PAUSE);
 				downloadIntent.putExtra(DownLoadIntents.URL, url);
 				mContext.startService(downloadIntent);
 
@@ -119,8 +141,10 @@ public class DownloadListAdapter extends BaseAdapter {
 				mViewHolder.pauseButton.setVisibility(View.GONE);
 				break;
 			case R.id.btn_delete:
+				// 删除按钮事件
 				// mDownloadManager.deleteTask(mPosition);
-				downloadIntent.putExtra(DownLoadIntents.TYPE, DownLoadIntents.Types.DELETE);
+				downloadIntent.putExtra(DownLoadIntents.TYPE,
+						DownLoadIntents.Types.DELETE);
 				downloadIntent.putExtra(DownLoadIntents.URL, url);
 				mContext.startService(downloadIntent);
 

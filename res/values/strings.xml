@@ -28,7 +28,7 @@
     <string name="tv_name_6">Sample For Grid View</string>
     <string name="tv_name_7">Sample For Tab Layout</string>
 
-    <color name="tv_color_gray">#DDDDDD</color>
+    <color name="tv_color_gray">#969696</color>
     <color name="tv_color_white">#F0F0F0</color>
     <color name="btn_font_color_white">#FFFFFF</color>
     <color name="btn_font_color_gray">#F0F0F0</color>

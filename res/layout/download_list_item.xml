@@ -10,8 +10,8 @@
 
         <ImageView
             android:id="@+id/download_setting_img"
-            android:layout_width="80dip"
-            android:layout_height="80dip"
+            android:layout_width="65dip"
+            android:layout_height="65dip"
             android:scaleType="fitXY"
             android:src="@drawable/publisher_emotion_button" />
 
@@ -29,13 +29,6 @@
                 android:padding="5dp"
                 android:text="当前下载文件名" />
 
-            <TextView
-                android:id="@+id/speed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="200KB/S" />
-
             <ProgressBar
                 android:id="@+id/progress_bar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -43,6 +36,32 @@
                 android:layout_height="wrap_content"
                 android:max="100"
                 android:padding="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:padding="5dp"
+                    android:text="200KB/S"
+                    android:textColor="@color/tv_color_gray"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:padding="5dp"
+                    android:text="10MB/20MB"
+                    android:textColor="@color/tv_color_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -55,7 +74,9 @@
                 android:id="@+id/btn_pause"
                 android:layout_width="wrap_content"
                 android:layout_height="40dip"
+                android:layout_gravity="center"
                 android:background="@drawable/guide_button_blue_background"
+                android:gravity="center"
                 android:text="暂停"
                 android:textColor="@color/btn_font_color_white" />
 
@@ -63,7 +84,9 @@
                 android:id="@+id/btn_continue"
                 android:layout_width="wrap_content"
                 android:layout_height="40dip"
+                android:layout_gravity="center"
                 android:background="@drawable/guide_button_blue_background"
+                android:gravity="center"
                 android:text="继续"
                 android:textColor="@color/btn_font_color_white"
                 android:visibility="gone" />
@@ -72,7 +95,9 @@
                 android:id="@+id/btn_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="40dip"
+                android:layout_gravity="center"
                 android:background="@drawable/guide_button_blue_background"
+                android:gravity="center"
                 android:text="删除"
                 android:textColor="@color/btn_font_color_white" />
         </LinearLayout>

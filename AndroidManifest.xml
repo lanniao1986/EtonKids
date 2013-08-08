@@ -87,7 +87,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.enix.hoken.custom.download.DownloadListActivity"
+            android:name="com.enix.hoken.activity.DownloadListActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>

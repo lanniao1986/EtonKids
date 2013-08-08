@@ -1,30 +1,24 @@
 package com.enix.hoken.util;
 
 import java.io.*;
-import java.text.DecimalFormat;
+import java.text.*;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import com.enix.hoken.R;
-import com.enix.hoken.basic.MainActivity;
-
-import android.app.Activity;
-import android.app.AlertDialog;
+import java.util.regex.*;
+import com.enix.hoken.*;
+import com.enix.hoken.basic.*;
+import android.app.*;
 import android.app.AlertDialog.*;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources.NotFoundException;
-import android.database.Cursor;
+import android.content.*;
+import android.content.pm.*;
+import android.content.res.Resources.*;
+import android.database.*;
 import android.graphics.*;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.NetworkInfo.State;
-import android.net.Uri;
+import android.graphics.drawable.*;
+import android.net.*;
+import android.net.NetworkInfo.*;
 import android.os.*;
-import android.provider.MediaStore;
-import android.util.Log;
+import android.provider.*;
+import android.util.*;
 import android.view.*;
 import android.widget.*;
 
@@ -1217,7 +1211,7 @@ public class CommonUtil {
 	 * @param size
 	 * @return
 	 */
-	public static String size(long size) {
+	public static String parseSizeString(long size) {
 
 		if (size / (1024 * 1024) > 0) {
 			float tmpSize = (float) (size) / (float) (1024 * 1024);
@@ -1337,6 +1331,29 @@ public class CommonUtil {
 		printDebugMsg(String.valueOf(msg));
 	}
 
+	/**
+	 * 获取应用程序图标
+	 * 
+	 * @param context
+	 * @param apkPath
+	 * @return
+	 */
+	public static Drawable getApkIcon(Context context, String apkPath) {
+		PackageManager pm = context.getPackageManager();
+		PackageInfo info = pm.getPackageArchiveInfo(apkPath,
+				PackageManager.GET_ACTIVITIES);
+		if (info != null) {
+			ApplicationInfo appInfo = info.applicationInfo;
+			appInfo.sourceDir = apkPath;
+			appInfo.publicSourceDir = apkPath;
+			try {
+				return appInfo.loadIcon(pm);
+			} catch (OutOfMemoryError e) {
+				Log.e("ApkIconLoader", e.toString());
+			}
+		}
+		return null;
+	}
 	// public static String getRandomColor() {
 	//
 	// Color.argb((new Double(Math.random() * 128)).intValue() + 128,(new

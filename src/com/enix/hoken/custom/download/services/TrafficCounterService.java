@@ -69,7 +69,7 @@ public class TrafficCounterService extends Service {
         if (timer != null && timerTask != null) {
             preTx = curTx = TrafficStats.getUidTxBytes(mUid);
             preRx = curRx = TrafficStats.getUidRxBytes(mUid);
-            Log.e("yyxu", "cur" + curRx);
+            Log.e("DEBUG", "TrafficCounterService:currentReceive=" + curRx);
             timer.schedule(timerTask, 0, SAMPLING_RATE);
 
             // check the network operator is changed or not

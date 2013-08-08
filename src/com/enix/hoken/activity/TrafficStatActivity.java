@@ -1,4 +1,4 @@
-package com.enix.hoken.custom.download;
+package com.enix.hoken.activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -77,13 +77,13 @@ public class TrafficStatActivity extends Activity {
 
 		long mobileRx = ConfigUtils.getLong(this, ConfigUtils.KEY_RX_MOBILE);
 		long mobileTx = ConfigUtils.getLong(this, ConfigUtils.KEY_TX_MOBILE);
-		appGprsText.setText("接收 " + CommonUtil.size(mobileRx) + " / 发送 "
-				+ CommonUtil.size(mobileTx));
+		appGprsText.setText("接收 " + CommonUtil.parseSizeString(mobileRx) + " / 发送 "
+				+ CommonUtil.parseSizeString(mobileTx));
 
 		long wifiRx = ConfigUtils.getLong(this, ConfigUtils.KEY_RX_WIFI);
 		long wifiTx = ConfigUtils.getLong(this, ConfigUtils.KEY_TX_WIFI);
-		appWifiText.setText("接收 " + CommonUtil.size(wifiRx) + " / 发送 "
-				+ CommonUtil.size(wifiTx));
+		appWifiText.setText("接收 " + CommonUtil.parseSizeString(wifiRx) + " / 发送 "
+				+ CommonUtil.parseSizeString(wifiTx));
 
 		try {
 			PackageManager packageManager = this.getPackageManager();

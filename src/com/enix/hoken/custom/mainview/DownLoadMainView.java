@@ -17,10 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.enix.hoken.activity.DesktopActivity;
+import com.enix.hoken.activity.DownloadListActivity;
 import com.enix.hoken.basic.MainView;
 import com.enix.hoken.R;
 import com.enix.hoken.custom.adapter.RssListAdapter;
-import com.enix.hoken.custom.download.DownloadListActivity;
 import com.enix.hoken.custom.item.PullToRefreshView;
 import com.enix.hoken.custom.item.PullToRefreshView.*;
 import com.enix.hoken.custom.rss.RssFeed;
