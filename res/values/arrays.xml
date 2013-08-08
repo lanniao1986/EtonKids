@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="welcome_guide_strings">
+        <item>上海伊顿慧智金汇豪庭幼儿园</item>
+        <item>伊顿的首要目标是让孩子们快乐</item>
+        <item>伊顿3C教育——孩子未来幸福和成功的基石</item>
+        <item>伊顿—让孩子从小就准备去接受挑战 </item>
+        <item>伊顿—爱上学习和探索的乐园</item>
+        <item>伊顿—激发主观能动性的教学活动</item>
+    </string-array>
+    <string-array name="desktop_list_head_strings">
+        <item>常用</item>
+        <item>操作</item>
+    </string-array>
+    <string-array name="desktop_list_item_favorite_strings">
+        <item>我的首页</item>
+        <item>班级成员</item>
+        <item>班级活动</item>
+        <item>班级相册</item>
+        <item>网络订阅</item>
+        <item>家长联系本</item>
+        <item>教师联系本</item>
+        <item>下载中心</item>
+    </string-array>
+    <string-array name="desktop_list_item_action_strings">
+        <item>选项</item>
+        <item>注销登录</item>
+    </string-array>
+    <string-array name="rss_url_strings">
+        <item>http://www.kejianhome.com/lunwen/rssfeed.asp?classid=450</item>
+        <item>http://www.youjiaotv.com/rss.php?rssid=195</item>
+        <item>http://www.11yj.cn/rss.php?rssid=216</item>
+        <item>http://www.11yj.cn/rss.php?rssid=218</item>
+        <item>http://www.11yj.cn/rss.php?rssid=217</item>
+    </string-array>
+    <string-array name="rss_url_names">
+        <item>课件之家--幼教论文</item>
+        <item>3-6岁-中国幼教传媒网</item>
+        <item>右脑资讯-一一幼教网</item>
+        <item>父母孩子-一一幼教网</item>
+        <item>右脑教育-一一幼教网</item>
+    </string-array>
+    <string-array name="myhomepage_mode_strings">
+        <item>我的首页</item>
+        <item>课程安排</item>
+        <item>日程提醒</item>
+    </string-array>
+    <string-array name="member_mode_strings">
+        <item>点名册</item>
+        <item>成员管理</item>
+        <item>排行榜</item>
+    </string-array>
+    <string-array name="myhomepage_menu_strings">
+        <item>开启过滤</item>
+        <item>关闭过滤</item>
+    </string-array>
+    <string-array name="member_menu_strings">
+        <item>重置状态</item>
+        <item>导出表格</item>
+        <item>点选模式</item>
+    </string-array>
+    <string-array name="member_config_menu_strings">
+        <item>导出表格</item>
+        <item>新建成员</item>
+    </string-array>
+    <string-array name="member_config_rank_strings">
+        <item>生成图表</item>
+        <item>图表设置</item>
+    </string-array>
+    <string-array name="schedulelist_menu_strings">
+        <item>新建日程</item>
+        <item>关闭所有提醒</item>
+    </string-array>
+    <string-array name="schedule_setting_menu_strings">
+        <item>重置日程</item>
+        <item>删除日程</item>
+    </string-array>
+    <string-array name="sinfo_setting_menu_strings">
+        <item>重置档案</item>
+        <item>删除档案</item>
+    </string-array>
+
+</resources>

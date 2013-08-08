@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/user_head_info_friendscount"
+            android:background="@drawable/profile_header_divider" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/profile_to_friend_list_img" />
+
+        <Button
+            android:id="@+id/lesson_list"
+            android:layout_width="fill_parent"
+            android:layout_height="36dip"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/profile_header_add_friend_button_bg"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="20dip"
+            android:text="教案一览"
+            android:textColor="#ff005092"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="8dip"
+        android:paddingLeft="20dip"
+        android:text="本周课程"
+        android:textColor="#FF333333"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_monday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_monday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_tuesday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_tuesday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_wednesday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_wednesday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_thursday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_thursday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_friday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_friday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_saturday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_saturday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/lesson_sunday"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dip"
+        android:paddingLeft="20dip"
+        android:paddingTop="8dip"
+        android:textColor="#80333333"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/lesson_sunday_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/profile_header_divider" />
+
+</LinearLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <com.enix.hoken.custom.item.PhotosGallery
+            android:id="@+id/photosdetail_gallery"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#000000"
+            android:paddingBottom="24dip"
+            android:paddingTop="24dip"
+            android:spacing="8dip" >
+        </com.enix.hoken.custom.item.PhotosGallery>
+
+        <ProgressBar
+            android:id="@+id/photosdetail_progressbar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="8dip"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/photosdetail_top"
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="#AA000000" >
+
+        <ImageView
+            android:id="@+id/photosdetail_back"
+            android:layout_width="54dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/flipper_head_title_wrapper_black_transparent_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/flipper_head_back" />
+
+        <TextView
+            android:id="@+id/photosdetail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="#AA000000"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dip"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/photosdetail_share"
+            android:layout_width="54dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/flipper_head_title_wrapper_black_transparent_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/flipper_head_share" />
+
+        <ImageView
+            android:id="@+id/photosdetail_menu"
+            android:layout_width="54dip"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/flipper_head_title_wrapper_black_transparent_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/flipper_head_menu" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/photosdetail_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#AA000000"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</FrameLayout>

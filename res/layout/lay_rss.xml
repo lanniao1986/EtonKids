@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/head_bar_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rss_count_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/rss_total"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="0.2"
+                android:background="@drawable/profile_header_add_friend_button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:textColor="#ff005092"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rss_arrived"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="0.3"
+                android:background="@drawable/profile_header_add_friend_button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:textColor="#ff005092"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/rss_dayoff"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_weight="0.3"
+                android:background="@drawable/profile_header_add_friend_button_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:textColor="#ff005092"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <com.enix.hoken.custom.item.PullToRefreshView
+                android:id="@+id/main_pull_refresh_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@android:color/white"
+                android:orientation="vertical" >
+                <ListView
+                    android:id="@+id/rss_listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:cacheColorHint="#00000000"
+                    android:listSelector="#00000000" >
+                </ListView>
+            </com.enix.hoken.custom.item.PullToRefreshView>
+
+            <TextView
+                android:id="@+id/rss_listview_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="╮(╯﹏╰）╭没有数据"
+                android:textColor="@color/link_color"
+                android:textSize="18sp"
+                android:visibility="gone" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/rss_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#80000000"
+                android:gravity="center"
+                android:padding="8dip"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android1="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/common_button_2" >
+
+    <CheckBox
+        android:id="@+id/schedule_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dip"
+        android:button="@drawable/check_box"
+        android:textColor="#000000"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/schedule_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/schedule_check"
+        android:layout_toLeftOf="@+id/schedule_datetime"
+        android:layout_toRightOf="@+id/schedule_check"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="1"
+        android:text="日程名"
+        android:textColor="#ff005092"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/schedule_datetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/schedule_name"
+        android:layout_alignParentRight="true"
+        android:paddingBottom="5dip"
+        android:text="2012-12-30 12:15:12"
+        android:textColor="#ff888888"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/schedule_dis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/schedule_check"
+        android:layout_alignLeft="@+id/schedule_name"
+        android:layout_alignRight="@+id/schedule_datetime"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="1"
+        android:text="日程内容"
+        android:textColor="@color/galy"
+        android:textSize="12sp" />
+
+</RelativeLayout>

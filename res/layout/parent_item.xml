@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF" >
+
+    <ImageView
+        android:id="@+id/parent_avatar"
+        android:layout_width="45dip"
+        android:layout_height="45dip"
+        android:layout_margin="8dip"
+        android:scaleType="centerCrop"
+        android:src="@drawable/search_contacts" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:layout_above="@+id/parent_tel"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/profile_header_divider" />
+
+    <TextView
+        android:id="@+id/parent_tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/parent_avatar"
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/parent_avatar"
+        android:gravity="center_vertical"
+        android:text="电话："
+        android:textColor="#ff001002"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/parent_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/parent_tel"
+        android:layout_below="@+id/parent_tel"
+        android:text="地址："
+        android:textColor="#ff001002"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/parent_qq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/parent_address"
+        android:layout_below="@+id/parent_avatar"
+        android:text="QQ："
+        android:textColor="#ff001002"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/parent_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/parent_qq"
+        android:layout_below="@+id/parent_qq"
+        android:text="Email："
+        android:textColor="#ff001002"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/parent_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/parent_avatar"
+        android:layout_below="@+id/parent_avatar"
+        android:text="佳佳爸爸"
+        android:textColor="#ff005092"
+        android:textSize="12sp" />
+
+</RelativeLayout>

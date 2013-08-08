@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF" >
+
+        <ImageView
+            android:id="@+id/student_avatar"
+            android:layout_width="45dip"
+            android:layout_height="45dip"
+            android:layout_margin="8dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/widget_default_head" />
+
+        <TextView
+            android:id="@+id/student_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/student_avatar"
+            android:layout_toRightOf="@+id/student_avatar"
+            android:gravity="center_vertical"
+            android:text="小朋友"
+            android:textColor="#ff005092"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/student_button"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/student_avatar"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/student_avatar"
+            android:layout_margin="8dip"
+            android:background="@drawable/guide_button_black_background"
+            android:gravity="center"
+            android:text="联系家长"
+            android:textColor="#ff005092"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/student_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/student_avatar"
+            android:layout_toRightOf="@+id/student_avatar"
+            android:paddingBottom="5dip"
+            android:text="2012-12-30 12:15:12"
+            android:textColor="#ff888888"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/student_dis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/student_name"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/student_button"
+            android:gravity="center_vertical"
+            android:text="活泼好动"
+            android:textColor="#ff001002"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/student_gender"
+            android:layout_width="11dip"
+            android:layout_height="15dip"
+            android:layout_alignBottom="@+id/student_name"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/student_name"
+            android:src="@drawable/gender_girl" />
+
+        <TextView
+            android:id="@+id/student_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/student_button"
+            android:layout_below="@+id/student_avatar"
+            android:paddingBottom="5dip"
+            android:text="2012-12-30 12:15:12"
+            android:textColor="#ff888888"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/student_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/student_gender"
+            android:background="@drawable/textview_style"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="新生报到"
+            android:textColor="#FFFFFF"
+            android:textSize="8sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_student_item_extend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btn_student_item_photo_list"
+            android:layout_width="wrap_content"
+            android:layout_height="36dip"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_bg"
+            android:gravity="center"
+            android:text="进入相册"
+            android:textColor="#ff005092"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_student_item_info"
+            android:layout_width="wrap_content"
+            android:layout_height="36dip"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_bg"
+            android:gravity="center"
+            android:text="学生档案"
+            android:textColor="#ff005092"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

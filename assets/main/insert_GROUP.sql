@@ -1,0 +1,4 @@
+INSERT INTO "com_enix_hoken_info_Group" ("g_code", "g_key", "g_value", "g_detail", "g_extend_1", "g_extend_2", "g_extend_3") VALUES ('S_01', '1', '早起接校车', '早上7点半接小朋友,3点半送小朋友.', NULL, NULL, NULL);
+INSERT INTO "com_enix_hoken_info_Group" ("g_code", "g_key", "g_value", "g_detail", "g_extend_1", "g_extend_2", "g_extend_3") VALUES ('S_01', '2', '提交教案', '周一早晨交本周教案', NULL, NULL, NULL);
+INSERT INTO "com_enix_hoken_info_Group" ("g_code", "g_key", "g_value", "g_detail", "g_extend_1", "g_extend_2", "g_extend_3") VALUES ('S_01', '3', '亲子活动日', '15日9点亲子活动', NULL, NULL, NULL);
+INSERT INTO "com_enix_hoken_info_Group" ("g_code", "g_key", "g_value", "g_detail", "g_extend_1", "g_extend_2", "g_extend_3") VALUES ('S_01', '4', '布置教室', '16日布置教室更换主题', NULL, NULL, NULL);

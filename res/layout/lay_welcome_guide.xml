@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fadingEdge="vertical" >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_guide"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/line_guide_bottom"
+            android:layout_marginBottom="24.0dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_guide_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32.0dip"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/font_size_normal"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_guide_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8.0dip"
+            android:layout_marginLeft="8.0dip"
+            android:layout_marginRight="8.0dip"
+            android:fadingEdge="horizontal"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_height_normal"
+                android:layout_marginRight="8.0dip"
+                android:layout_weight="1"
+                android:background="@drawable/guide_button_blue_background"
+                android:text="@string/btn_register"
+                android:textColor="@color/btn_font_color_white"
+                android:textSize="@dimen/font_size_normal" />
+
+            <Button
+                android:id="@+id/btn_preview"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_height_normal"
+                android:layout_weight="1"
+                android:background="@drawable/guide_button_black_background"
+                android:text="@string/btn_preview"
+                android:textColor="@color/btn_font_color_black"
+                android:textSize="@dimen/font_size_normal" />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/btn_height_normal"
+                android:layout_marginLeft="8.0dip"
+                android:layout_weight="1"
+                android:background="@drawable/guide_button_blue_background"
+                android:text="@string/btn_login"
+                android:textColor="@color/btn_font_color_white"
+                android:textSize="@dimen/font_size_normal" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

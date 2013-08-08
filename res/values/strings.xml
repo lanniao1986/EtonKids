@@ -1,0 +1,50 @@
+<resources>
+
+    <string name="app_name">我的伊顿</string>
+    <string name="school_name">伊顿慧智双语幼儿园</string>
+    <string name="school_id">0001</string>
+    <string name="sd_folder_root">EtonKids</string>
+    <string name="sd_folder_avater">Avatar</string>
+    <string name="sd_folder_download">Download</string>
+    <string name="sd_folder_class_album">Class_album</string>
+    <string name="sd_folder_student_album">Student_album</string>
+    <string name="sd_folder_media">Media</string>
+    <string name="sd_folder_cache">Cache</string>
+    <string name="str_tv_checkedCount">已选中0项</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_welcome">Welcome</string>
+    <string name="cb_check_all">全选</string>
+    <string name="cb_cancel_all">取消</string>
+    <string name="btn_back">返回</string>
+    <string name="btn_next">下一步</string>
+    <string name="str_do_submit">submit Success!!</string>
+    <string name="str_do_clear">clear success!!</string>
+    <string name="tv_name_1">Sample For LinearLayout</string>
+    <string name="tv_name_2">Sample For RelativeLayout</string>
+    <string name="tv_name_3">Sample For Table Layout</string>
+    <string name="tv_name_4">Sample For List View</string>
+    <string name="tv_name_5">Sample For AbsoluteLayout</string>
+    <string name="tv_name_6">Sample For Grid View</string>
+    <string name="tv_name_7">Sample For Tab Layout</string>
+
+    <color name="tv_color_gray">#DDDDDD</color>
+    <color name="tv_color_white">#F0F0F0</color>
+    <color name="btn_font_color_white">#FFFFFF</color>
+    <color name="btn_font_color_gray">#F0F0F0</color>
+    <color name="btn_font_color_black">#333333</color>
+
+    <string name="menu_check_all">全选</string>
+    <string name="menu_cancel_all">取消</string>
+    <string name="menu_deselect_all">反选</string>
+    <string name="btn_register">注册</string>
+    <string name="btn_login">登录</string>
+    <string name="btn_preview">其他案例预览</string>
+  <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">松开后刷新</string>
+    <string name="pull_to_refresh_refreshing_label">刷新\u2026</string>
+    
+    <string name="pull_to_refresh_footer_release_label">松开后加载</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
+    <string name="pull_to_refresh_footer_refreshing_label">加载中\u2026</string>
+</resources>

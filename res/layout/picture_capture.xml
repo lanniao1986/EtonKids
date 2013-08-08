@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="#ffe4e4e4"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp" >
+
+    <LinearLayout
+        android:id="@+id/btn_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnFromCamera"
+            android:layout_width="fill_parent"
+            android:layout_height="36dip"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_blue_background"
+            android:text="拍照导入"
+            android:textColor="@color/btn_font_color_white" />
+
+        <Button
+            android:id="@+id/btnFromGallary"
+            android:layout_width="fill_parent"
+            android:layout_height="36dip"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_blue_background"
+            android:text="相册导入"
+            android:textColor="@color/btn_font_color_white" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgpreview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_weight="0.40"
+        android:src="@drawable/select_album_item_default_img" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.02"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="fill_parent"
+            android:layout_height="36dip"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_blue_background"
+            android:text="确定"
+            android:textColor="@color/btn_font_color_white" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="36dip"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_blue_background"
+            android:text="取消"
+            android:textColor="@color/btn_font_color_white" />
+    </LinearLayout>
+
+</LinearLayout>

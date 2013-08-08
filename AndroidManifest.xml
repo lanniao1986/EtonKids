@@ -1,0 +1,108 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.enix.hoken"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <!-- 使用网络功能所需权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="15" />
+
+    <application
+        android:name=".common.BaseApplication"
+        android:icon="@drawable/eton_icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        <activity
+            android:name="com.enix.hoken.activity.Welcome_Activity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.ParentInfoActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.SinfoSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.WelcomeGuide_Activity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.PhotosListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.PhotosDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.PicturePickerActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.ScheduleSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.AlarmActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.DesktopActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.ChartActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.activity.ColorPickerActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.enix.hoken.custom.download.DownloadListActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <service android:name="com.enix.hoken.custom.download.services.TrafficCounterService" >
+        </service>
+        <service android:name="com.enix.hoken.custom.download.services.DownloadService" >
+            <intent-filter>
+                <action android:name="com.enix.hoken.custom.download.services.IDownloadService" />
+            </intent-filter>
+        </service>
+        <!-- android:process=":remote": 新开一个进程 -->
+        <receiver
+            android:name="com.enix.hoken.custom.receiver.AlarmReceiver"
+            android:process=":remote" />
+    </application>
+
+</manifest>

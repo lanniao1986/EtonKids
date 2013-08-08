@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/head_bar_sub_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/sinfo_setting_tabs_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/sinfo_setting_tabs_linear"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/sinfo_setting_avatar"
+                android:layout_width="100dip"
+                android:layout_height="100dip"
+                android:layout_margin="8dip"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile_headphoto" />
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:src="@drawable/flipper_head_title_corner" />
+
+            <EditText
+                android:id="@+id/sinfo_setting_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/sinfo_setting_avatar"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/sinfo_setting_avatar"
+                android:background="@drawable/blog_editor_content_bg"
+                android:ems="10"
+                android:hint="输入学生姓名"
+                android:padding="8dip"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="14sp" >
+            </EditText>
+
+            <RadioGroup
+                android:id="@+id/sinfo_setting_gender_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/sinfo_setting_name"
+                android:layout_below="@+id/sinfo_setting_name"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/sinfo_setting_gender_boy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/check_box"
+                    android:checked="true"
+                    android:text="男生"
+                    android:textColor="#ff333333"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/sinfo_setting_gender_girl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:button="@drawable/check_box"
+                    android:text="女生"
+                    android:textColor="#ff333333"
+                    android:textSize="12sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/sinfo_setting_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/sinfo_setting_gender_group"
+                android:layout_alignRight="@+id/sinfo_setting_name"
+                android:layout_below="@+id/sinfo_setting_gender_group"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/blog_editor_content_bg"
+                android:hint="选择所在班级"
+                android:padding="8dip"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/sinfo_setting_birthday"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/sinfo_setting_class"
+                android:layout_alignRight="@+id/sinfo_setting_class"
+                android:layout_below="@+id/sinfo_setting_class"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/blog_editor_content_bg"
+                android:hint="选择出生年月"
+                android:padding="8dip"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/sinfo_setting_indate"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/sinfo_setting_birthday"
+                android:layout_alignRight="@+id/sinfo_setting_birthday"
+                android:layout_below="@+id/sinfo_setting_birthday"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/blog_editor_content_bg"
+                android:hint="选择入园日期"
+                android:padding="8dip"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:id="@+id/sinfo_setting_way_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/sinfo_setting_indate"
+                android:layout_below="@+id/sinfo_setting_indate"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/sinfo_setting_way_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/check_box"
+                    android:checked="true"
+                    android:text="家长"
+                    android:textColor="#ff333333"
+                    android:textSize="12sp" />
+
+                <RadioButton
+                    android:id="@+id/sinfo_setting_way_bus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:button="@drawable/check_box"
+                    android:text="校车"
+                    android:textColor="#ff333333"
+                    android:textSize="12sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/sinfo_setting_birthday"
+                android:layout_alignBottom="@+id/sinfo_setting_birthday"
+                android:layout_alignLeft="@+id/textView1"
+                android:text="出生年月" />
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/sinfo_setting_indate"
+                android:layout_alignBottom="@+id/sinfo_setting_indate"
+                android:layout_alignLeft="@+id/TextView01"
+                android:text="入园日期" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/sinfo_setting_class"
+                android:layout_alignBottom="@+id/sinfo_setting_class"
+                android:layout_alignRight="@+id/sinfo_setting_avatar"
+                android:text="所在班级" />
+
+            <TextView
+                android:id="@+id/TextView03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/TextView02"
+                android:layout_alignTop="@+id/sinfo_setting_way_group"
+                android:text="接送方式" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/sinfo_setting_dis"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dip"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginTop="8dip"
+            android:background="@drawable/blog_editor_content_bg"
+            android:ems="10"
+            android:hint="简要描述"
+            android:padding="8dip"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/sinfo_setting_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_black_background"
+            android:text="确定"
+            android:textColor="@color/btn_font_color_black"
+            android:textSize="@dimen/font_size_normal" />
+
+        <Button
+            android:id="@+id/sinfo_setting_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_black_background"
+            android:text="取消"
+            android:textColor="@color/btn_font_color_black"
+            android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>
+
+</LinearLayout>

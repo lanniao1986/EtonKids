@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>3D柱形图</title>
+		<meta name="Description" content="" />
+		<meta name="Keywords" content="" />
+		<script type="text/javascript" src="ichart.1.2.min.js"></script>
+		<script type="text/javascript" >
+		
+		$(function(){
+			var data = new Array();
+			var contact = window.ChartActivity.getContact();
+			eval('data='+contact);
+			window.ChartActivity.debugOut(data); 
+	
+	        var width = window.chart.getWidth();
+	        var height = window.chart.getHeight();
+	        var title_text = window.chart.getTitleText();
+	        var sub_title = window.chart.getSubtitle();
+	        var title_size = window.chart.getTitleSize();
+	        var title_color = window.chart.getTitleColor();
+	        var title_weight = window.chart.getTitleWeight();
+	        
+	        var footnote_text = window.chart.getFootnote();
+	        var footnote_size = window.chart.getFootnoteSize();
+	        var footnote_color = window.chart.getFootnoteColor();
+	        var footnote_weight = window.chart.getFootnoteWeight();
+	        
+	        var legend_enable = window.legend.isEnable();
+	        var legend_row = window.legend.getRow();
+              var legend_column = window.legend.getColumn();
+              var legend_align = window.legend.getAlign();
+              var legend_valign = window.legend.getValign();
+            
+	        var animation = window.chart.isAnimation();
+	        var offsetx  = window.chart.getOffsetx();
+	        var offsety = window.chart.getOffsety();
+	        var shadow =  window.chart.isShadow();
+	        var shadow =  window.chart.isShadow();
+	        var shadow_blur =  window.chart.getShadow_blur();
+	        var shadow_color =  window.chart.getShadow_color();
+	        var shadow_offsetx =  window.chart.getShadow_offsetx();
+	        var shadow_offsety =  window.chart.getShadow_offsety();
+
+	        
+	        var border_enable = window.border.isEnable();
+	        var border_color = window.border.getColor();
+	        var border_width = window.border.getWidth();
+	        var border_radius = window.border.getRadius();
+	        window.ChartActivity.debugOut(border_enable); 
+	        window.ChartActivity.debugOut(border_color); 
+	        
+	        window.ChartActivity.debugOut(title_text);
+	        
+		var mainChart = new iChart.Column3D({
+
+  
+
+			shadow:shadow,
+                 shadow_blur:shadow_blur,
+                 shadow_color:shadow_color,
+                 shadow_offsetx:shadow_offsetx,
+                 shadow_offsety:shadow_offsety,
+			
+			
+                offsetx : offsetx,
+                offsety : offsety,
+                animation:animation,
+		     render : 'canvasDiv',
+		     title:{
+		         text:title_text,
+                    fontsize:title_size,
+                    fontweight:title_weight,
+                    color:title_color
+                 },
+                 subtitle:sub_title,
+                 border:{
+                     border_enable:border_enable,
+                     border_color:border_color,
+                     border_width:border_width,
+                     border_radius:border_radius
+                 },
+                 background_color:'#AA00AA',
+                 footnote:{
+		         text:footnote_text,
+                    fontsize:footnote_size,
+                    fontweight:footnote_weight,
+                    color:footnote_color
+                 },
+                 footnote_align :'right',
+                 
+                 legend:{
+                     enable:legend_enable,
+                     row:1,
+                     column:'max',
+                     align:legend_align,
+                     valign:legend_valign
+                 },
+              
+                 
+				data: data,
+				width : width,
+				height : height,
+				coordinate:{
+				   striped: true,
+				wall_style:[
+                              {color:'#B9D3EE'},
+                              {color:'#104E8B'}, 
+                              {color:'#104E8B'},
+                              {color:'#B9D3EE'},
+                              {color:'#1874CD'},
+                              {color:'#CAE1FF'}
+                      ],
+					scale:[{
+						 position:'left',	
+						 start_scale:0,
+						 end_scale:40,
+						 scale_space:10,
+						 listeners:{
+					     	 parseText:function(t,x,y){
+					               return { text:t+"分"}
+					             }
+						 }
+					}]
+				}
+			});
+			
+	           /** 
+			 *绘制平均分数线 
+
+			mainChart.plugin(new iChart.Custom({ drawFn:function(){
+
+					var avg = mainChart.total/5,
+					coo = mainChart.getCoordinate(),
+					x = coo.get('originx'),
+					W = coo.get('width'),
+					S = coo.getScale('left'),
+					H = coo.get('height'),
+					h = (avg - S.start) * H / S.distance,
+					y = mainChart.y + H - h;
+					mainChart.target.line(52,175,500,175,2,'#b32c0d')
+					.textAlign('start')
+					.textBaseline('middle')
+					.textFont('600 12px Verdana')
+					.fillText('平均分:'+avg,505,175,false,'#B9D3EE');
+				}}));
+							 */
+			mainChart.draw();
+		});
+		</script>
+	</head>
+	<body >
+		<div id='canvasDiv'>
+		</div>
+	</body>
+</html>

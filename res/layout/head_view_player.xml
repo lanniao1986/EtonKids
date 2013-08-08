@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:clickable="true"
+    android:longClickable="true"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/player_bg" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="100dp"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/btn_head_view_player_prev"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/appwidget_icon_play_prev" />
+
+            <ToggleButton
+                android:id="@+id/btn_head_view_player_pause_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/appwidget_icon_play_pause_toggle" 
+                android:textOn=""
+                android:textOff=""/>
+
+            <Button
+                android:id="@+id/btn_head_view_player_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/appwidget_icon_play_next" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_head_view_player_title"
+            android:layout_width="wrap_content"
+            android:layout_height="76dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="18dp"
+            android:text="点击播放音乐~~"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+</LinearLayout>

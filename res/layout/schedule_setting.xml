@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/head_bar_sub_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/schedule_setting_datetime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dip"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginTop="8dip"
+            android:background="@drawable/blog_editor_content_bg"
+            android:hint="点击设定日程日期时间"
+            android:padding="8dip"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/schedule_setting_checkonce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dip"
+                android:layout_weight="1"
+                android:button="@drawable/check_box"
+                android:text="单次"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/schedule_setting_checkweek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dip"
+                android:layout_weight="1"
+                android:button="@drawable/check_box"
+                android:text="工作日"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/schedule_setting_checkall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dip"
+                android:layout_weight="1"
+                android:button="@drawable/check_box"
+                android:text="每天"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/schedule_setting_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dip"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginTop="8dip"
+            android:background="@drawable/blog_editor_content_bg"
+            android:hint="日程标题"
+            android:padding="8dip"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/schedule_setting_dis"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="0.28"
+            android:background="@drawable/blog_editor_content_bg"
+            android:gravity="top"
+            android:hint="日程内容"
+            android:maxLength="20000"
+            android:padding="8dip"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:background="@drawable/publisher_buttons_area_bg"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/schedule_setting_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_black_background"
+            android:text="确定"
+            android:textColor="@color/btn_font_color_black"
+            android:textSize="@dimen/font_size_normal" />
+
+        <Button
+            android:id="@+id/schedule_setting_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/guide_button_black_background"
+            android:text="取消"
+            android:textColor="@color/btn_font_color_black"
+            android:textSize="@dimen/font_size_normal" />
+    </LinearLayout>
+
+</LinearLayout>

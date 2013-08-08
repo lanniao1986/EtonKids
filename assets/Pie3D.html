@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>3D饼状图</title>
+		<meta name="Description" content="" />
+		<meta name="Keywords" content="" />
+		<script type="text/javascript" src="ichart.1.2.min.js"></script>
+		<script type="text/javascript" >
+		
+		$(function(){
+			var data = new Array();
+			var contact = window.pie3D.getData(); //获得数据
+			eval('data='+contact); //执行数据的赋值
+			window.ChartActivity.debugOut(data); 
+	
+	    	  var title_text = window.chart.getTitleText();
+	        var sub_title = window.chart.getSubtitle();
+	        var title_size = window.chart.getTitleSize();
+	        var title_color = window.chart.getTitleColor();
+	        var title_weight = window.chart.getTitleWeight();
+	        var width = window.pie3D.getWidth(); //获得宽度
+	        var height = window.pie3D.getHeight(); //获得高度
+	        var radius = window.pie3D.getRadius(); //获得半径
+	        var yHeight = window.pie3D.getyHeight(); //获得厚度
+	        window.ChartActivity.debugOut(title_text);
+	        
+	     
+	        
+	        var footnote_text = window.chart.getFootnote();
+	        var footnote_size = window.chart.getFootnoteSize();
+	        var footnote_color = window.chart.getFootnoteColor();
+	        var footnote_weight = window.chart.getFootnoteWeight();
+	        
+	        var legend_enable = window.legend.isEnable();
+	        var legend_row = window.legend.getRow();
+              var legend_column = window.legend.getColumn();
+              var legend_align = window.legend.getAlign();
+              var legend_valign = window.legend.getValign();
+	        
+	        new iChart.Pie3D({
+	        	render : 'canvasDiv',
+        		data: data,
+        		 animation:true,
+        			shadow:true,
+
+	             title:{
+		         text:title_text,
+                    fontsize:title_size,
+                    fontweight:title_weight,
+                    color:title_color
+                 },
+                 subtitle:sub_title,
+	        	width : width,
+				height : height,
+	           footnote:{
+		         text:footnote_text,
+                    fontsize:footnote_size,
+                    fontweight:footnote_weight,
+                    color:footnote_color
+                 },
+                 footnote_align :'right',
+                 
+                 legend:{
+                     enable:legend_enable,
+                     row:1,
+                     column:'max',
+                     align:legend_align,
+                     valign:legend_valign
+                 },
+	        	showpercent:true,
+	        	decimalsnum:2,
+	        	yHeight:yHeight,
+	        	radius:radius,
+	        }).draw();
+		});
+		</script>
+	</head>
+	<body >
+		<div id='canvasDiv'>
+		</div>
+	</body>
+</html>

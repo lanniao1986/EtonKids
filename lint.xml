@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="HandlerLeak" severity="ignore" />
+    <issue id="ResourceAsColor" severity="ignore" />
+    <issue id="SdCardPath" severity="ignore" />
+    <issue id="SetJavaScriptEnabled">
+        <ignore path="src/com/enix/hoken/activity/ChartActivity.java" />
+    </issue>
+    <issue id="SimpleDateFormat" severity="ignore">
+        <ignore path="src/com/enix/hoken/custom/adapter/StudentListAdapter.java" />
+    </issue>
+    <issue id="UseSparseArrays" severity="ignore">
+        <ignore path="src/com/enix/hoken/custom/item/ListViewAdapter.java" />
+    </issue>
+    <issue id="ValidFragment">
+        <ignore path="src/com/enix/hoken/basic/MainActivity.java" />
+        <ignore path="src/com/enix/hoken/custom/item/DatePickFragment.java" />
+    </issue>
+</lint>

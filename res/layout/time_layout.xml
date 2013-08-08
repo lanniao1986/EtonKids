@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/timePicker1"
+        android:layout_width="400dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="10dp" >
+
+        <com.enix.hoken.custom.wheeldatepicker.WheelView
+            android:id="@+id/year"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content" />
+
+        <com.enix.hoken.custom.wheeldatepicker.WheelView
+            android:id="@+id/month"
+            android:layout_width="51dip"
+            android:layout_height="wrap_content" />
+
+        <com.enix.hoken.custom.wheeldatepicker.WheelView
+            android:id="@+id/day"
+            android:layout_width="51dip"
+            android:layout_height="wrap_content" />
+
+        <com.enix.hoken.custom.wheeldatepicker.WheelView
+            android:id="@+id/hour"
+            android:layout_width="51dip"
+            android:layout_height="wrap_content" />
+
+        <com.enix.hoken.custom.wheeldatepicker.WheelView
+            android:id="@+id/mins"
+            android:layout_width="51dip"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timePicker1"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="12dp" >
+
+        <Button
+            android:id="@+id/btn_datetime_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timePicker1"
+            android:visibility="gone" >
+        </Button>
+
+        <Button
+            android:id="@+id/btn_datetime_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timePicker1"
+            android:layout_toRightOf="@id/btn_datetime_sure"
+            android:visibility="gone" >
+        </Button>
+    </LinearLayout>
+
+</RelativeLayout>
