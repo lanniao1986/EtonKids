@@ -381,6 +381,18 @@ public class CommonUtil {
 	}
 
 	/**
+	 * 获取下载文件完整路径
+	 * 
+	 * @param mContext
+	 * @return
+	 */
+	public static String getDownLoadPath(String fileUrlName) {
+		return getRootFolder()
+				+ getStringResource(mActivity, R.string.sd_folder_download)
+				+ "/" + getFileNameFromUrl(fileUrlName);
+	}
+
+	/**
 	 * 获取配置文件中的多媒体文件夹路径
 	 * 
 	 * @param mContext

@@ -119,37 +119,37 @@ public class DownloadListAdapter extends BaseAdapter {
 
 			switch (v.getId()) {
 			// 继续按钮事件
-			case R.id.btn_continue:
-				// mDownloadManager.continueTask(mPosition);
-				downloadIntent.putExtra(DownLoadIntents.TYPE,
-						DownLoadIntents.Types.CONTINUE);
-				downloadIntent.putExtra(DownLoadIntents.URL, url);
-				mContext.startService(downloadIntent);
-				// 继续下载按钮消失,并显示暂停按钮
-				mViewHolder.continueButton.setVisibility(View.GONE);
-				mViewHolder.pauseButton.setVisibility(View.VISIBLE);
-				break;
+//			case R.id.btn_continue:
+//				// mDownloadManager.continueTask(mPosition);
+//				downloadIntent.putExtra(DownLoadIntents.TYPE,
+//						DownLoadIntents.Types.CONTINUE);
+//				downloadIntent.putExtra(DownLoadIntents.URL, url);
+//				mContext.startService(downloadIntent);
+//				// 继续下载按钮消失,并显示暂停按钮
+//				mViewHolder.continueButton.setVisibility(View.GONE);
+//				mViewHolder.pauseButton.setVisibility(View.VISIBLE);
+//				break;
 			// 暂停按钮事件
-			case R.id.btn_pause:
-				// mDownloadManager.pauseTask(mPosition);
-				downloadIntent.putExtra(DownLoadIntents.TYPE,
-						DownLoadIntents.Types.PAUSE);
-				downloadIntent.putExtra(DownLoadIntents.URL, url);
-				mContext.startService(downloadIntent);
-
-				mViewHolder.continueButton.setVisibility(View.VISIBLE);
-				mViewHolder.pauseButton.setVisibility(View.GONE);
-				break;
-			case R.id.btn_delete:
-				// 删除按钮事件
-				// mDownloadManager.deleteTask(mPosition);
-				downloadIntent.putExtra(DownLoadIntents.TYPE,
-						DownLoadIntents.Types.DELETE);
-				downloadIntent.putExtra(DownLoadIntents.URL, url);
-				mContext.startService(downloadIntent);
-
-				removeItem(url);
-				break;
+//			case R.id.btn_pause:
+//				// mDownloadManager.pauseTask(mPosition);
+//				downloadIntent.putExtra(DownLoadIntents.TYPE,
+//						DownLoadIntents.Types.PAUSE);
+//				downloadIntent.putExtra(DownLoadIntents.URL, url);
+//				mContext.startService(downloadIntent);
+//
+//				mViewHolder.continueButton.setVisibility(View.VISIBLE);
+//				mViewHolder.pauseButton.setVisibility(View.GONE);
+//				break;
+//			case R.id.btn_delete:
+//				// 删除按钮事件
+//				// mDownloadManager.deleteTask(mPosition);
+//				downloadIntent.putExtra(DownLoadIntents.TYPE,
+//						DownLoadIntents.Types.DELETE);
+//				downloadIntent.putExtra(DownLoadIntents.URL, url);
+//				mContext.startService(downloadIntent);
+//
+//				removeItem(url);
+//				break;
 			}
 		}
 	}
