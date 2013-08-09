@@ -31,19 +31,19 @@ public class ViewHolder {
 	private boolean hasInited = false;
 
 	public ViewHolder(View parentView) {
-		if (parentView != null) {
-			titleText = (TextView) parentView.findViewById(R.id.title);
-			speedText = (TextView) parentView.findViewById(R.id.speed);
-			sizeText = (TextView) parentView.findViewById(R.id.size);
-
-			progressBar = (ProgressBar) parentView
-					.findViewById(R.id.progress_bar);
-			pauseButton = (Button) parentView.findViewById(R.id.btn_pause);
-			deleteButton = (Button) parentView.findViewById(R.id.btn_delete);
-			continueButton = (Button) parentView
-					.findViewById(R.id.btn_continue);
-			hasInited = true;
-		}
+//		if (parentView != null) {
+//			titleText = (TextView) parentView.findViewById(R.id.title);
+//			speedText = (TextView) parentView.findViewById(R.id.speed);
+//			sizeText = (TextView) parentView.findViewById(R.id.size);
+//
+//			progressBar = (ProgressBar) parentView
+//					.findViewById(R.id.progress_bar);
+//			pauseButton = (Button) parentView.findViewById(R.id.btn_pause);
+//			deleteButton = (Button) parentView.findViewById(R.id.btn_delete);
+//			continueButton = (Button) parentView
+//					.findViewById(R.id.btn_continue);
+//			hasInited = true;
+//		}
 	}
 
 	public static HashMap<Integer, String> getItemDataMap(String url,

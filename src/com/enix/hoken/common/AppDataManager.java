@@ -1,13 +1,19 @@
 package com.enix.hoken.common;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import java.io.*;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import com.enix.hoken.basic.MainActivity;
 import com.enix.hoken.basic.MainInfo;
+import com.enix.hoken.custom.download.utils.TextUtils;
 import com.enix.hoken.encode.Encryp;
 import com.enix.hoken.info.*;
 import com.enix.hoken.sqllite.Dbmanager;
@@ -22,6 +28,158 @@ public class AppDataManager {
 	private ObjectInputStream in;
 	private Dbmanager mDbmanager;
 	private Activity mActvity;
+	public static final String PREFERENCE_NAME = "download";
+	public static final int URL_COUNT = 10;// URL集合最大条目数
+	public static final String KEY_URL = "url";
+	public static final String KEY_STATE = "state";
+	public static final String KEY_FILENAME = "filename";
+
+	public SharedPreferences getPreferences() {
+		return mActvity.getSharedPreferences(PREFERENCE_NAME,
+				Context.MODE_WORLD_WRITEABLE);
+	}
+
+	/**
+	 * 从首选项存储器中获取指定KEY的VALUE字符串值
+	 * 
+	 * @param context
+	 * @param key
+	 * @return
+	 */
+	public String getStringFromPreferences(String key) {
+		SharedPreferences preferences = getPreferences();
+		if (preferences != null)
+			return preferences.getString(key, "");
+		else
+			return "";
+	}
+
+	/**
+	 * 保存指定键值对象到首选项存储器
+	 * 
+	 * @param context
+	 * @param key
+	 * @param value
+	 */
+	public void setStringToPreferences(String key, String value) {
+		SharedPreferences preferences = getPreferences();
+		if (preferences != null) {
+			Editor editor = preferences.edit();
+			editor.putString(key, value);
+			editor.commit();
+		}
+	}
+
+	/**
+	 * 存储指定下载信息存储到首选项存储器
+	 * 
+	 * @param context
+	 * @param index
+	 * @param url
+	 */
+	public void storeDownloadInfo(int index, String url, String fileName,
+			int state) {
+		setStringToPreferences(KEY_URL + index, url);
+		setStringToPreferences(KEY_FILENAME + index, fileName);
+		setIntToPreferences(KEY_FILENAME + index, state);
+	}
+
+	/**
+	 * 获取首选项存储器中的任务对象列表
+	 * 
+	 * @return
+	 */
+	public DinfoList getDownloadInfoList(
+			Dinfo.DownloadStateChangedListener listener) {
+		DinfoList mDinfoList = new DinfoList();
+		Dinfo mDinfo;
+		for (int i = 0; i < URL_COUNT; i++) {
+			String url = getStringFromPreferences(KEY_URL + i);
+			String filename = getStringFromPreferences(KEY_FILENAME + i);
+			int state = getIntFromPreferences(KEY_STATE + i);
+			if (!TextUtils.isEmpty(url) && !TextUtils.isEmpty(filename)) {
+				state = state == Dinfo.COMPLETE ? Dinfo.COMPLETE : Dinfo.ABORT;
+				mDinfo = new Dinfo(getStringFromPreferences(KEY_URL + i),
+						getStringFromPreferences(KEY_FILENAME + i), state,
+						listener);
+				mDinfoList.add(mDinfo);
+
+				CommonUtil
+						.printDebugMsg("AppDataManager:getDownloadInfoList url = "
+								+ url);
+				CommonUtil
+						.printDebugMsg("AppDataManager:getDownloadInfoList filename = "
+								+ filename);
+				CommonUtil
+						.printDebugMsg("AppDataManager:getDownloadInfoList state = "
+								+ state);
+
+			}
+		}
+		return mDinfoList;
+	}
+
+	/**
+	 * 从首选项存储器中清空指定键值
+	 * 
+	 * @param context
+	 * @param index
+	 */
+	public void clearURLFromPreferences(int index) {
+		setStringToPreferences(KEY_URL + index, "");
+	}
+
+	/**
+	 * 获取指定INT型键值VALUE
+	 * 
+	 * @param context
+	 * @param key
+	 * @return
+	 */
+	public int getIntFromPreferences(String key) {
+		SharedPreferences preferences = getPreferences();
+		if (preferences != null)
+			return preferences.getInt(key, 0);
+		else
+			return 0;
+	}
+
+	/**
+	 * 存储INT型对象到首选项存储器
+	 * 
+	 * @param context
+	 * @param key
+	 * @param value
+	 */
+	public void setIntToPreferences(String key, int value) {
+		SharedPreferences preferences = getPreferences();
+		if (preferences != null) {
+			Editor editor = preferences.edit();
+			editor.putInt(key, value);
+			editor.commit();
+		}
+	}
+
+	public long getLongFromPreferences(String key) {
+		SharedPreferences preferences = getPreferences();
+		if (preferences != null)
+			return preferences.getLong(key, 0L);
+		else
+			return 0L;
+	}
+
+	public void setLongToPreferences(String key, long value) {
+		SharedPreferences preferences = getPreferences();
+		if (preferences != null) {
+			Editor editor = preferences.edit();
+			editor.putLong(key, value);
+			editor.commit();
+		}
+	}
+
+	public void addLongToPreferences(String key, long value) {
+		setLongToPreferences(key, getLongFromPreferences(key) + value);
+	}
 
 	public AppDataManager(MainActivity mActivity) {
 		this.mActvity = mActivity;
@@ -74,7 +232,7 @@ public class AppDataManager {
 		case InfoSession.SINFO:
 			strTbl = InfoSession.TBL_NAME_SINFO;
 			break;
-		case InfoSession.GROUP:  
+		case InfoSession.GROUP:
 			strTbl = InfoSession.TBL_NAME_GROUP;
 			break;
 		case InfoSession.PINFO:

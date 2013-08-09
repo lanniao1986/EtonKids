@@ -126,7 +126,7 @@ public class UserMainView extends MainView {
 		super.initView();
 		mMainList.addHeaderView(main_list_head_flipper);
 		mMainList.setCacheColorHint(Color.TRANSPARENT); // 设置背景透明度
-		mMainList.setLayoutAnimation(getListAnim());// 每次加载时都显示动画
+		// mMainList.setLayoutAnimation(getListAnim());// 每次加载时都显示动画
 		mStudentAdapter = new StudentListAdapter(mActivity);
 		mStudentAdapter.setmResultCount(badgeResultCount);
 		mNoteTips.setText(commonInfo.getCurrentNote());
@@ -226,7 +226,7 @@ public class UserMainView extends MainView {
 				mActionHandler.startIntentForResult(mActionHandler
 						.createTranspotIntent(PicturePickerActivity.class,
 								mBundle),
-								ActionHandler.REQUEST_FOR_AVATAR_UPDATE);
+						ActionHandler.REQUEST_FOR_AVATAR_UPDATE);
 
 			}
 		});
