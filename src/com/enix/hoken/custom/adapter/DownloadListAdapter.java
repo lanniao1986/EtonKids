@@ -1,7 +1,6 @@
 package com.enix.hoken.custom.adapter;
 
 import java.util.*;
-
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -23,22 +22,15 @@ public class DownloadListAdapter extends MainAdapter implements
 	private Dinfo mDinfo;
 
 	public DownloadListAdapter(MainActivity mActivity, DinfoList mMainInfoList) {
+		
 		super(mActivity, mMainInfoList);
-		initTaskList();
+
 	}
 
-	/**
-	 * 从首选项中获取历史任务
-	 */
-	private void initTaskList() {
-		mMainInfoList = mAppDataManager.getDownloadInfoList(this);
-		notifyDataSetChanged();
-	}
 
-	private void setInfoToAppData(int index, Dinfo mInfo) {
 
-		mAppDataManager.storeDownloadInfo(index, mInfo.getUrl(),
-				mInfo.getFileName(), mInfo.getState());
+	private void setInfoToAppData() {
+		mAppDataManager.serializerDownloadList((DinfoList) mMainInfoList);
 	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
@@ -181,7 +173,6 @@ public class DownloadListAdapter extends MainAdapter implements
 		if (!mMainInfoList.contains(mDinfo) && !hasSameTask) {
 			mMainInfoList.add(mDinfo);
 			mDinfo.startDownloadTask();
-			setInfoToAppData(mMainInfoList.size(), mDinfo);
 		} else {
 			CommonUtil.showShortToast(mActivity, "该下载任务已经存在");
 		}
@@ -208,18 +199,17 @@ public class DownloadListAdapter extends MainAdapter implements
 
 	@Override
 	public void downloadStateChanged(int stateId, Dinfo mDinfo) {
-		switch (stateId) {
-		case Dinfo.ABORT:
-
-			break;
-		case Dinfo.COMPLETE:
-
-			break;
-		case Dinfo.READY:
-
-			break;
-		default:
-			break;
+		if (stateId != Dinfo.DOWNLOADING) {
+			for (int i = 0; i < mMainInfoList.size(); i++) {
+				Dinfo mInfo = (Dinfo) mMainInfoList.get(i);
+				if (mInfo.getUrl().equals(mDinfo.getUrl())
+						&& mInfo.getFileName().equals(mDinfo.getFileName())) {
+					mMainInfoList.set(i, mDinfo);
+					setInfoToAppData();
+					CommonUtil.printDebugMsg("downloadStateChanged : state ="
+							+ stateId);
+				}
+			}
 		}
 		notifyDataSetChanged();
 	}

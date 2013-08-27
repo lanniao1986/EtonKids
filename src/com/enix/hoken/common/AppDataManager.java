@@ -13,6 +13,7 @@ import android.content.SharedPreferences.Editor;
 import android.util.Log;
 import com.enix.hoken.basic.MainActivity;
 import com.enix.hoken.basic.MainInfo;
+import com.enix.hoken.basic.MainInfoList;
 import com.enix.hoken.custom.download.utils.TextUtils;
 import com.enix.hoken.encode.Encryp;
 import com.enix.hoken.info.*;
@@ -68,55 +69,6 @@ public class AppDataManager {
 			editor.putString(key, value);
 			editor.commit();
 		}
-	}
-
-	/**
-	 * 存储指定下载信息存储到首选项存储器
-	 * 
-	 * @param context
-	 * @param index
-	 * @param url
-	 */
-	public void storeDownloadInfo(int index, String url, String fileName,
-			int state) {
-		setStringToPreferences(KEY_URL + index, url);
-		setStringToPreferences(KEY_FILENAME + index, fileName);
-		setIntToPreferences(KEY_FILENAME + index, state);
-	}
-
-	/**
-	 * 获取首选项存储器中的任务对象列表
-	 * 
-	 * @return
-	 */
-	public DinfoList getDownloadInfoList(
-			Dinfo.DownloadStateChangedListener listener) {
-		DinfoList mDinfoList = new DinfoList();
-		Dinfo mDinfo;
-		for (int i = 0; i < URL_COUNT; i++) {
-			String url = getStringFromPreferences(KEY_URL + i);
-			String filename = getStringFromPreferences(KEY_FILENAME + i);
-			int state = getIntFromPreferences(KEY_STATE + i);
-			if (!TextUtils.isEmpty(url) && !TextUtils.isEmpty(filename)) {
-				state = state == Dinfo.COMPLETE ? Dinfo.COMPLETE : Dinfo.ABORT;
-				mDinfo = new Dinfo(getStringFromPreferences(KEY_URL + i),
-						getStringFromPreferences(KEY_FILENAME + i), state,
-						listener);
-				mDinfoList.add(mDinfo);
-
-				CommonUtil
-						.printDebugMsg("AppDataManager:getDownloadInfoList url = "
-								+ url);
-				CommonUtil
-						.printDebugMsg("AppDataManager:getDownloadInfoList filename = "
-								+ filename);
-				CommonUtil
-						.printDebugMsg("AppDataManager:getDownloadInfoList state = "
-								+ state);
-
-			}
-		}
-		return mDinfoList;
 	}
 
 	/**
@@ -278,7 +230,69 @@ public class AppDataManager {
 			mCacheFileName = strTbl;
 		}
 		mCacheFileName = strTbl;
-		return CommonUtil.getCacheFolder(mActvity) + mCacheFileName;
+		return CommonUtil.getCacheFolder() + mCacheFileName;
+	}
+
+	/**
+	 * 序列化存储下载列表信息
+	 * 
+	 * @param mDinfoList
+	 * @return
+	 */
+	public String serializerDownloadList(DinfoList mDinfoList) {
+		String cacheFilePath = CommonUtil.getCacheFolder()
+				+ InfoSession.TBL_NAME_DINFOLIST;
+		if (cacheFilePath != null && CommonUtil.sdcardMounted()) {
+			try {
+				out = new ObjectOutputStream(
+						new FileOutputStream(cacheFilePath));
+				out.writeObject(mDinfoList);
+				CommonUtil.printDebugMsg("serializerDownloadList_SUCESS");
+				return cacheFilePath;
+			} catch (Exception e) {
+				CommonUtil.printDebugMsg("serializerDownloadList_FAILED");
+				e.printStackTrace();
+				return null;
+			} finally {
+				try {
+					if (out != null)
+						out.close();
+				} catch (IOException e) {
+					out = null;
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
+	}
+
+	public DinfoList parseSerializedDownloadList() {
+		Log.i("DEBUG", "parseSerializedDownloadList_START");
+		String cacheFilePath = CommonUtil.getCacheFolder()
+				+ InfoSession.TBL_NAME_DINFOLIST;
+		if (cacheFilePath != null && CommonUtil.sdcardMounted()) {
+			try {
+				in = new ObjectInputStream(new FileInputStream(cacheFilePath));
+				Object infoResult = null;
+				infoResult = in.readObject();
+				CommonUtil
+						.printDebugMsg("parseSerializedDownloadList_SUCESSED");
+				return (DinfoList) infoResult;
+			} catch (Exception e) {
+				CommonUtil.printDebugMsg("parseSerializedDownloadList_FAILED");
+				e.printStackTrace();
+				return null;
+			} finally {
+				try {
+					if (in != null)
+						in.close();
+				} catch (IOException e) {
+					in = null;
+					e.printStackTrace();
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -296,10 +310,10 @@ public class AppDataManager {
 						new FileOutputStream(cacheFilePath));
 				// 将程序SESSION中指定表数据仅需序列化保存
 				out.writeObject(getInfoFromApp(infoID));
-				Log.i("DEBUG", "serializerInfo_SUCESS");
+				CommonUtil.printDebugMsg("serializerInfo_SUCESS");
 				return cacheFilePath;
 			} catch (Exception e) {
-				Log.e("DEBUG", "serializerInfo_FAILED");
+				CommonUtil.printDebugMsg("serializerInfo_FAILED");
 				e.printStackTrace();
 				return null;
 			} finally {

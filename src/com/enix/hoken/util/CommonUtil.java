@@ -278,9 +278,9 @@ public class CommonUtil {
 	 * @param mContext
 	 * @return
 	 */
-	public static String getCacheFolder(Context mContext) {
+	public static String getCacheFolder() {
 		return getRootFolder()
-				+ getStringResource(mContext, R.string.sd_folder_cache) + "/";
+				+ getStringResource(mActivity, R.string.sd_folder_cache) + "/";
 	}
 
 	/**

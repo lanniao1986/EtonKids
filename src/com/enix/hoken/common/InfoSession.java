@@ -20,6 +20,7 @@ public class InfoSession {
 	public static final String TBL_NAME_CINFOLIST = "TBL_CINFOLIST";
 	public static final String TBL_NAME_GROUPLIST = "TBL_GROUPLIST ";
 	public static final String TBL_NAME_JINFOMAPLIST = "TBL_JINFOMAPLIST";
+	public static final String TBL_NAME_DINFOLIST = "TBL_DINFOLIST";
 
 	public static final int TINFO = 1;
 	public static final int BINFO = 2;

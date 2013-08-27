@@ -102,7 +102,10 @@ public class DownLoadMainView extends MainView {
 	public void initView() {
 		super.initView();
 		mModeText.setText("下载中心");
-		mDinfoList = new DinfoList();
+		mDinfoList = initTaskList();
+		if (mDinfoList == null) {
+			mDinfoList = new DinfoList();
+		}
 		mDownloadListAdapter = new DownloadListAdapter(mActivity, mDinfoList);
 		mDownLoadList.setAdapter(mDownloadListAdapter);
 
@@ -136,6 +139,13 @@ public class DownLoadMainView extends MainView {
 
 		}
 	};
+
+	/**
+	 * 从首选项中获取历史任务
+	 */
+	public DinfoList initTaskList() {
+		return mAppDataManager.parseSerializedDownloadList();
+	}
 
 	private void startNewDownload(String url, String name) {
 		mDownloadListAdapter.addDownloadItem(url, name);
