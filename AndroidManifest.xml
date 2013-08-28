@@ -27,7 +27,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <activity
-            android:name="com.enix.hoken.activity.Welcome_Activity"
+            android:name="com.enix.hoken.activity.WelcomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >

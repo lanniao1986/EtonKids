@@ -58,7 +58,7 @@ import com.enix.hoken.action.ActionHandler;
 import com.enix.hoken.activity.ChartActivity;
 import com.enix.hoken.activity.DesktopActivity;
 import com.enix.hoken.activity.SinfoSettingActivity;
-import com.enix.hoken.activity.Welcome_Activity;
+import com.enix.hoken.activity.WelcomeActivity;
 import com.enix.hoken.basic.MainView;
 import com.enix.hoken.custom.adapter.MemberGridAdapter;
 import com.enix.hoken.custom.adapter.MenuPopAdapter;

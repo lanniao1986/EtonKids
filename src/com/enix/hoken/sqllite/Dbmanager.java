@@ -221,7 +221,6 @@ public class Dbmanager {
 		}
 		try {
 			db.update(mMainInfo);
-
 			copyDataBaseToLocal();
 			return true;
 		} catch (Exception e) {
@@ -327,6 +326,28 @@ public class Dbmanager {
 		mMainInfoList = new MainInfoList<MainInfo>();
 		mMainInfoList.addAll(db.findAllByWhere(clazz, strWhere));
 		return mMainInfoList;
+	}
+
+	/**
+	 * 获取同名下载任务是否在数据库中已存在
+	 * 
+	 * @param mDinfo
+	 * @return
+	 */
+	public boolean IsDinfoExist(Dinfo mDinfo) {
+		try {
+			if (db.findAllByWhere(
+					Dinfo.class,
+					"fileName='" + mDinfo.getFileName() + "' and url='"
+							+ mDinfo.getUrl() + "'").size() > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	/**

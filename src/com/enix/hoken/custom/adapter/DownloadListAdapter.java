@@ -1,9 +1,7 @@
 package com.enix.hoken.custom.adapter;
 
-import java.util.*;
 import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -12,25 +10,25 @@ import android.widget.TextView;
 import com.enix.hoken.basic.MainActivity;
 import com.enix.hoken.basic.MainAdapter;
 import com.enix.hoken.basic.MainInfo;
+import com.enix.hoken.common.InfoSession;
+import com.enix.hoken.custom.item.DownloadManager.DownloadStateChangedListener;
 import com.enix.hoken.R;
+import com.enix.hoken.custom.item.DownloadManager;
 import com.enix.hoken.info.*;
 import com.enix.hoken.util.CommonUtil;
 
 public class DownloadListAdapter extends MainAdapter implements
-		Dinfo.DownloadStateChangedListener {
+		DownloadStateChangedListener {
 
 	private Dinfo mDinfo;
+	private DownloadManager mDownloadManager;
 
 	public DownloadListAdapter(MainActivity mActivity, DinfoList mMainInfoList) {
-		
 		super(mActivity, mMainInfoList);
-
 	}
 
-
-
 	private void setInfoToAppData() {
-		mAppDataManager.serializerDownloadList((DinfoList) mMainInfoList);
+		mAppDataManager.setInfoToApp(mMainInfoList, InfoSession.DINFOLIST);
 	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
@@ -68,7 +66,7 @@ public class DownloadListAdapter extends MainAdapter implements
 		int state = mDinfo.getState();
 		holder.mFileName.setText(mDinfo.getFileName());
 		switch (state) {
-		case Dinfo.ABORT:
+		case DownloadManager.ABORT:
 			holder.mCurrentSize.setText("");
 			holder.mTotalSize.setText("");
 			holder.mSpector.setVisibility(View.INVISIBLE);
@@ -78,7 +76,7 @@ public class DownloadListAdapter extends MainAdapter implements
 			holder.mLaunch.setVisibility(View.GONE);
 			holder.mProgressBar.setVisibility(View.VISIBLE);
 			break;
-		case Dinfo.COMPLETE:
+		case DownloadManager.COMPLETE:
 			holder.mCurrentSize.setText("");
 			holder.mTotalSize.setText(CommonUtil.parseSizeString(mDinfo
 					.getTotalsize()));
@@ -89,7 +87,7 @@ public class DownloadListAdapter extends MainAdapter implements
 			holder.mPause.setVisibility(View.GONE);
 			holder.mLaunch.setVisibility(View.VISIBLE);
 			break;
-		case Dinfo.PAUSE:
+		case DownloadManager.PAUSE:
 			holder.mCurrentSize.setText(CommonUtil.parseSizeString(mDinfo
 					.getPresize()));
 			holder.mTotalSize.setText(CommonUtil.parseSizeString(mDinfo
@@ -101,7 +99,7 @@ public class DownloadListAdapter extends MainAdapter implements
 			holder.mPause.setVisibility(View.GONE);
 			holder.mLaunch.setVisibility(View.GONE);
 			break;
-		case Dinfo.ERROR:
+		case DownloadManager.ERROR:
 			holder.mCurrentSize.setText("");
 			holder.mTotalSize.setText("");
 			holder.mContinue.setVisibility(View.VISIBLE);
@@ -111,7 +109,7 @@ public class DownloadListAdapter extends MainAdapter implements
 			holder.mProgressBar.setVisibility(View.VISIBLE);
 			holder.mState.setText("出错终止");
 			break;
-		case Dinfo.READY:
+		case DownloadManager.READY:
 			holder.mCurrentSize.setText("");
 			holder.mTotalSize.setText("正在计算文件大小");
 			holder.mContinue.setVisibility(View.VISIBLE);
@@ -121,7 +119,7 @@ public class DownloadListAdapter extends MainAdapter implements
 			holder.mSpector.setVisibility(View.INVISIBLE);
 			holder.mState.setText("准备下载");
 			break;
-		case Dinfo.DOWNLOADING:
+		case DownloadManager.DOWNLOADING:
 			holder.mCurrentSize.setText(CommonUtil.parseSizeString(mDinfo
 					.getPresize()));
 			holder.mTotalSize.setText(CommonUtil.parseSizeString(mDinfo
@@ -135,30 +133,30 @@ public class DownloadListAdapter extends MainAdapter implements
 		}
 		holder.mProgressBar.setMax((int) mDinfo.getTotalsize());
 		holder.mProgressBar.setProgress((int) mDinfo.getPresize());
+		// 暂停下载按钮事件
 		holder.mPause.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				mDinfo.pauseDownloadTask();
+				mDownloadManager.pauseDownloadTask();
 			}
 		});
+		// 继续下载按钮事件
 		holder.mContinue.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				if (mDinfo.getState() == Dinfo.ABORT) {
-					mDinfo.restartDownloadTask();
+				if (mDinfo.getState() == DownloadManager.ABORT) {
+					mDownloadManager.resumeDownloadTask();
 				} else {
-					mDinfo.startDownloadTask();
+					mDownloadManager.resumeDownloadTask();
 				}
 			}
 		});
-
 		return convertView;
 	}
 
 	public void addDownloadItem(String url, String fileName) {
-		Dinfo mDinfo = new Dinfo(url, fileName, this);
+		Dinfo mDinfo = new Dinfo(url, fileName);
 		boolean hasSameTask = false;
 		// 存在同一文件则不新建任务
 		for (int i = 0; i < mMainInfoList.size(); i++) {
@@ -172,11 +170,11 @@ public class DownloadListAdapter extends MainAdapter implements
 		}
 		if (!mMainInfoList.contains(mDinfo) && !hasSameTask) {
 			mMainInfoList.add(mDinfo);
-			mDinfo.startDownloadTask();
+			mDownloadManager = new DownloadManager(mDinfo, this);
+			mDownloadManager.startDownloadTask();
 		} else {
 			CommonUtil.showShortToast(mActivity, "该下载任务已经存在");
 		}
-
 	}
 
 	public void removeDownloadItem(Dinfo mDinfo) {
@@ -199,13 +197,21 @@ public class DownloadListAdapter extends MainAdapter implements
 
 	@Override
 	public void downloadStateChanged(int stateId, Dinfo mDinfo) {
-		if (stateId != Dinfo.DOWNLOADING) {
+		if (stateId != DownloadManager.DOWNLOADING) {
 			for (int i = 0; i < mMainInfoList.size(); i++) {
 				Dinfo mInfo = (Dinfo) mMainInfoList.get(i);
 				if (mInfo.getUrl().equals(mDinfo.getUrl())
 						&& mInfo.getFileName().equals(mDinfo.getFileName())) {
 					mMainInfoList.set(i, mDinfo);
 					setInfoToAppData();
+					// 初次下载 插入下载记录
+					if (stateId == DownloadManager.READY
+							&& !mDbmanager.IsDinfoExist(mDinfo)) {
+						mDbmanager.insertInfo(mDinfo);
+					} else {
+						// 否则为更新数据库
+						mDbmanager.updateInfo(mDinfo);
+					}
 					CommonUtil.printDebugMsg("downloadStateChanged : state ="
 							+ stateId);
 				}
@@ -213,4 +219,5 @@ public class DownloadListAdapter extends MainAdapter implements
 		}
 		notifyDataSetChanged();
 	}
+
 }

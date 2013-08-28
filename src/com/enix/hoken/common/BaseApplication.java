@@ -25,6 +25,9 @@ public class BaseApplication extends Application {
 	private RinfoList rinfoList;
 	private LinfoList linfoList;
 	private Linfo linfo;
+
+	private Dinfo dinfo;
+	private DinfoList dinfoList;;
 	private SinfoList selectedSinfoList;
 	private DisplayMetrics metric;
 	private int screenWidth;
@@ -108,6 +111,30 @@ public class BaseApplication extends Application {
 			jinfomaplist = new HashMap<String, JinfoList>();
 		}
 		return jinfomaplist;
+	}
+
+	public Dinfo getDinfo() {
+		return dinfo;
+	}
+
+	public void setDinfo(Dinfo dinfo) {
+		this.dinfo = dinfo;
+	}
+
+	public DinfoList getDinfoList() {
+		if (dinfoList == null) {
+			return new DinfoList();
+		} else {
+			return dinfoList;
+		}
+	}
+
+	public void setDinfoList(DinfoList dinfoList) {
+		if (dinfoList != null) {
+			this.dinfoList = dinfoList;
+		} else {
+			this.dinfoList = new DinfoList();
+		}
 	}
 
 	public Sinfo getSinfoBySid(int sid) {

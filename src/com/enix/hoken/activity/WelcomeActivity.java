@@ -3,11 +3,14 @@
  */
 package com.enix.hoken.activity;
 
+import java.util.List;
+
 import com.enix.hoken.R;
 import com.enix.hoken.info.Binfo;
 import com.enix.hoken.info.BinfoList;
 import com.enix.hoken.info.Cinfo;
 import com.enix.hoken.info.CommonInfo;
+import com.enix.hoken.info.DinfoList;
 import com.enix.hoken.info.Group;
 import com.enix.hoken.info.GroupList;
 import com.enix.hoken.info.Pinfo;
@@ -34,7 +37,7 @@ import android.database.sqlite.SQLiteDatabase;
  * @author gumc
  * 
  */
-public class Welcome_Activity extends Activity implements Runnable {
+public class WelcomeActivity extends Activity implements Runnable {
 	static final String Activity_ID = "Welcome_Activity";
 
 	SQLiteDatabase sqldb;
@@ -52,6 +55,7 @@ public class Welcome_Activity extends Activity implements Runnable {
 	private CommonInfo comminfo;
 	private BaseApplication mApplication;
 	private SinfoList mSinfoList;
+
 	public SinfoList getmSinfoList() {
 		return mSinfoList;
 	}
@@ -75,7 +79,7 @@ public class Welcome_Activity extends Activity implements Runnable {
 		mApplication.setScreenHeight(metric.heightPixels);
 		mApplication.setScreenWidth(metric.widthPixels);
 		appdata = new AppDataManager(this);
-		helper = new DbHelper(Welcome_Activity.this, DbHelper.DB_NAME, null,
+		helper = new DbHelper(WelcomeActivity.this, DbHelper.DB_NAME, null,
 				DbHelper.DB_VERSION);
 		sqldb = helper.getDataBase();
 		helper.close();
@@ -88,7 +92,7 @@ public class Welcome_Activity extends Activity implements Runnable {
 		CommonUtil.copyFile("/data/data/com.enix.hoken/databases/Eton.db",
 				"/sdcard/EtonKids/Eton.db");
 		if (setDBDataToApp()) {
-			startActivity(new Intent(Welcome_Activity.this,
+			startActivity(new Intent(WelcomeActivity.this,
 					DesktopActivity.class));
 			// startActivity(new Intent(Welcome_Activity.this,
 			// ChartActivity.class));
@@ -106,7 +110,7 @@ public class Welcome_Activity extends Activity implements Runnable {
 		try {
 			// 欢迎界面停留时间
 			Thread.sleep(1000);
-			startActivity(new Intent(Welcome_Activity.this,
+			startActivity(new Intent(WelcomeActivity.this,
 					WelcomeGuide_Activity.class));
 			finish();
 		} catch (InterruptedException e) {
@@ -124,6 +128,7 @@ public class Welcome_Activity extends Activity implements Runnable {
 		TinfoList tinfoList = new TinfoList();
 		LinfoList linfoList = new LinfoList();
 		RinfoList rinfoList = new RinfoList();
+		DinfoList dinfoList = new DinfoList();
 		binfoList.addAll(db.findAll(Binfo.class));
 		try {
 			if (binfoList != null && binfoList.size() > 0) {
@@ -189,6 +194,9 @@ public class Welcome_Activity extends Activity implements Runnable {
 				groupList.addAll(db
 						.findAllByWhere(Group.class, "g_code='S_01'"));
 				appdata.setInfoToApp(groupList, InfoSession.SCHEDULELIST);
+				// 获取下载记录
+				dinfoList.addAll(db.findAll(Dinfo.class));
+				appdata.setInfoToApp(dinfoList, InfoSession.DINFOLIST);
 				return true;
 			}
 		} catch (Exception e) {

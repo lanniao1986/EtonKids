@@ -234,68 +234,6 @@ public class AppDataManager {
 	}
 
 	/**
-	 * 序列化存储下载列表信息
-	 * 
-	 * @param mDinfoList
-	 * @return
-	 */
-	public String serializerDownloadList(DinfoList mDinfoList) {
-		String cacheFilePath = CommonUtil.getCacheFolder()
-				+ InfoSession.TBL_NAME_DINFOLIST;
-		if (cacheFilePath != null && CommonUtil.sdcardMounted()) {
-			try {
-				out = new ObjectOutputStream(
-						new FileOutputStream(cacheFilePath));
-				out.writeObject(mDinfoList);
-				CommonUtil.printDebugMsg("serializerDownloadList_SUCESS");
-				return cacheFilePath;
-			} catch (Exception e) {
-				CommonUtil.printDebugMsg("serializerDownloadList_FAILED");
-				e.printStackTrace();
-				return null;
-			} finally {
-				try {
-					if (out != null)
-						out.close();
-				} catch (IOException e) {
-					out = null;
-					e.printStackTrace();
-				}
-			}
-		}
-		return null;
-	}
-
-	public DinfoList parseSerializedDownloadList() {
-		Log.i("DEBUG", "parseSerializedDownloadList_START");
-		String cacheFilePath = CommonUtil.getCacheFolder()
-				+ InfoSession.TBL_NAME_DINFOLIST;
-		if (cacheFilePath != null && CommonUtil.sdcardMounted()) {
-			try {
-				in = new ObjectInputStream(new FileInputStream(cacheFilePath));
-				Object infoResult = null;
-				infoResult = in.readObject();
-				CommonUtil
-						.printDebugMsg("parseSerializedDownloadList_SUCESSED");
-				return (DinfoList) infoResult;
-			} catch (Exception e) {
-				CommonUtil.printDebugMsg("parseSerializedDownloadList_FAILED");
-				e.printStackTrace();
-				return null;
-			} finally {
-				try {
-					if (in != null)
-						in.close();
-				} catch (IOException e) {
-					in = null;
-					e.printStackTrace();
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * 根据指定的表对象进行序列化保存到程序CACHE目录
 	 * 
 	 * @param infoID
@@ -387,6 +325,8 @@ public class AppDataManager {
 					return mApplication.getJinfoList().add((Jinfo) mMainInfo);
 				case InfoSession.LINFO:
 					return mApplication.getJinfoList().add((Jinfo) mMainInfo);
+				case InfoSession.DINFO:
+					return mApplication.getDinfoList().add((Dinfo) mMainInfo);
 				}
 				return false;
 			} catch (Exception e) {
@@ -436,6 +376,9 @@ public class AppDataManager {
 				case InfoSession.LINFO:
 					return mApplication.getLinfoList()
 							.remove((Jinfo) mMainInfo);
+				case InfoSession.DINFO:
+					return mApplication.getDinfoList()
+							.remove((Dinfo) mMainInfo);
 				}
 				return false;
 			} catch (Exception e) {
@@ -485,6 +428,8 @@ public class AppDataManager {
 					return mApplication.getRinfoList().set(mMainInfo);
 				case InfoSession.LINFO:
 					return mApplication.getLinfoList().set(mMainInfo);
+				case InfoSession.DINFO:
+					return mApplication.getDinfoList().set(mMainInfo);
 				}
 				return false;
 			} catch (Exception e) {
@@ -496,6 +441,12 @@ public class AppDataManager {
 		}
 	}
 
+	/**
+	 * 从BaseApplication中获取数据对象
+	 * 
+	 * @param infoID
+	 * @return
+	 */
 	public Object getInfoFromApp(int infoID) {
 		switch (infoID) {
 		case InfoSession.TINFO:
@@ -514,6 +465,10 @@ public class AppDataManager {
 			return mApplication.getJinfo();
 		case InfoSession.PINFOLIST:
 			return mApplication.getPinfoList();
+		case InfoSession.DINFO:
+			return mApplication.getDinfo();
+		case InfoSession.DINFOLIST:
+			return mApplication.getDinfoList();
 		case InfoSession.RINFO:
 			return mApplication.getRinfo();
 		case InfoSession.RINFOLIST:
@@ -593,6 +548,9 @@ public class AppDataManager {
 			break;
 		case InfoSession.CINFOLIST:
 			mApplication.setCinfoList((CinfoList) obj_info);
+			break;
+		case InfoSession.DINFOLIST:
+			mApplication.setDinfoList((DinfoList) obj_info);
 			break;
 		case InfoSession.JINFOMAPLIST:
 			mApplication.setJinfoMapList((HashMap<String, JinfoList>) obj_info);
