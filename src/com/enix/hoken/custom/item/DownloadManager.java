@@ -13,18 +13,18 @@ public class DownloadManager {
 	private FinalHttp finalHttp;
 	private HttpHandler<File> handler;
 	public DownloadStateChangedListener listener;
-	public static final int READY = 0;
+	public static final int START = 0;
 	public static final int DOWNLOADING = 1;
 	public static final int PAUSE = 2;
-	public static final int ABORT = 3;
-	public static final int ERROR = 4;
-	public static final int COMPLETE = 5;
+	public static final int ERROR = 3;
+	public static final int COMPLETE = 4;
 	public DownloadAjaxCallBack mAjaxCallBack;
 	private Dinfo mDinfo;
 
 	public DownloadManager(Dinfo mDinfo, DownloadStateChangedListener listener) {
 		this.mDinfo = mDinfo;
 		this.listener = listener;
+		finalHttp = new FinalHttp();
 	}
 
 	/**
@@ -48,8 +48,8 @@ public class DownloadManager {
 	 *            是否断点续传
 	 */
 	private void startDownloadTask(boolean isResume) {
-		listener.downloadStateChanged(READY, mDinfo);
-		finalHttp = new FinalHttp();
+		listener.downloadStateChanged(START, mDinfo);
+
 		mAjaxCallBack = new DownloadAjaxCallBack(mDinfo, listener);
 		handler = finalHttp.download(mDinfo.getUrl(),
 				CommonUtil.getDownLoadPath(mDinfo.getUrl()), true,
@@ -75,6 +75,14 @@ public class DownloadManager {
 	}
 
 	public interface DownloadStateChangedListener {
+		/**
+		 * 返回下载状态变更后的事件
+		 * 
+		 * @param stateId
+		 *            状态ID
+		 * @param mDinfo
+		 *            下载记录对象
+		 */
 		public void downloadStateChanged(int stateId, Dinfo mDinfo);
 	}
 
@@ -98,9 +106,9 @@ public class DownloadManager {
 
 		@Override
 		public void onFailure(Throwable t, int errorNo, String strMsg) {
-			mDinfo.setState(ABORT);
+			mDinfo.setState(PAUSE);
 			mDinfo.setDatetime(format.format(new Date()));
-			listener.downloadStateChanged(ABORT, mDinfo);
+			listener.downloadStateChanged(PAUSE, mDinfo);
 		}
 
 		public void onLoading(long count, long current) {

@@ -17,9 +17,10 @@ public class Dinfo extends MainInfo {
 
 	}
 
-	public Dinfo(String url, String fileName) {
+	public Dinfo(String url, String fileName, String imgurl) {
 		this.url = url;
 		this.fileName = fileName;
+		this.imgurl = imgurl;
 	}
 
 	public int getId() {

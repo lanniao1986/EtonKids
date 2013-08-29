@@ -28,8 +28,10 @@ public class DownLoadMainView extends MainView {
 	private TextView mListEmpty;
 	private SimpleDateFormat format = new SimpleDateFormat("上次更新于  M月d日 HH:mm");
 
-	public static final String APK_OFFICE = "http://gdown.baidu.com/data/wisegame/ef4db096fe5741dc/baisibudejie_58.apk";
+	public static final String APK_BUDEJIE = "http://gdown.baidu.com/data/wisegame/ef4db096fe5741dc/baisibudejie_58.apk";
 	public static final String APK_MAXTHON = "http://211.167.105.112:81/1Q2W3E4R5T6Y7U8I9O0P1Z2X3C4V5B/dl.maxthon.cn/mobile/download/mx/100/MaxthonCloudBrowser_Android_v4.0.6.2000.apk";
+	public static final String IMG_MAXTHON = "http://soft.hao123.com/uploads/2013/0711/2013071114083051de4bde21f22.jpg";
+	public static final String IMG_BUDEJIE = "http://d.hiphotos.bdimg.com/wisegame/pic/item/c3ec08fa513d2697ea86218254fbb2fb4216d89c.jpg";
 	private DinfoList mDinfoList;
 
 	private int downindex = 0;
@@ -65,18 +67,16 @@ public class DownLoadMainView extends MainView {
 			}
 		});
 		mBtnRecommand.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				downindex += 1;
 				if (downindex % 2 == 1) {
-					startNewDownload(APK_OFFICE, "百思不得姐");
+					startNewDownload(APK_BUDEJIE, "百思不得姐", IMG_BUDEJIE);
 				} else {
-					startNewDownload(APK_MAXTHON, "傲游浏览器移动版");
+					startNewDownload(APK_MAXTHON, "傲游浏览器移动版", IMG_MAXTHON);
 				}
 			}
 		});
-
 	}
 
 	public void initView() {
@@ -123,8 +123,8 @@ public class DownLoadMainView extends MainView {
 		return mApplication.getDinfoList();
 	}
 
-	private void startNewDownload(String url, String name) {
-		mDownloadListAdapter.addDownloadItem(url, name);
+	private void startNewDownload(String url, String name, String imgurl) {
+		mDownloadListAdapter.addDownloadItem(url, name, imgurl);
 	}
 
 }

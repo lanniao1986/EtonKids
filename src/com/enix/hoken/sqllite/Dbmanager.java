@@ -230,6 +230,27 @@ public class Dbmanager {
 	}
 
 	/**
+	 * 根据条件语句更新单个对象数据
+	 * 
+	 * @param mMainInfo
+	 * @param whereStr
+	 * @return
+	 */
+	public boolean updateInfoByWhere(MainInfo mMainInfo, String whereStr) {
+		if (mMainInfo == null) {
+			return false;
+		}
+		try {
+			db.update(mMainInfo, whereStr);
+			copyDataBaseToLocal();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
 	 * 逐条删除列表中指定对象
 	 * 
 	 * @param mInfoList

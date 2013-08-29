@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import net.tsz.afinal.FinalBitmap;
+
 import com.enix.hoken.R;
 import com.enix.hoken.action.ActionHandler;
 import com.enix.hoken.common.AppDataManager;
@@ -15,6 +17,8 @@ import com.enix.hoken.custom.adapter.ListItem;
 import com.enix.hoken.custom.item.AnimationController;
 import com.enix.hoken.custom.item.FlipperLayout;
 import com.enix.hoken.sqllite.Dbmanager;
+import com.enix.hoken.util.CommonUtil;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -53,9 +57,11 @@ public abstract class MainActivity extends FragmentActivity {
 	public static final int PARENT_CONTACTS = 5;
 	public static final int TEACHER_CONTACTS = 6;
 	public static final int DOWNLOAD_CENTER = 7;
-	
+	public FinalBitmap fb;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		CommonUtil.setActivity(this);
 		mApplication = (BaseApplication) getApplication();
 		mDbmanager = new Dbmanager(this);
 		mAppDataManager = new AppDataManager(this);
@@ -63,7 +69,8 @@ public abstract class MainActivity extends FragmentActivity {
 		animationController = new AnimationController();
 		mAppDataManager.setmDbmanager(mDbmanager);
 		mDbmanager.setmAppDataManager(mAppDataManager);
-
+		fb = FinalBitmap.create(this);
+		fb.configDiskCachePath(CommonUtil.getCacheFolder());
 		mRoot = new FlipperLayout(this);
 		paramsFillParent = new LayoutParams(LayoutParams.FILL_PARENT,
 				LayoutParams.FILL_PARENT);

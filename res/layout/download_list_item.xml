@@ -12,7 +12,14 @@
             android:id="@+id/download_setting_icon"
             android:layout_width="65dip"
             android:layout_height="65dip"
-            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:maxHeight="65dip"
+            android:maxWidth="65dip"
+            android:paddingBottom="4dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="8dp"
             android:src="@drawable/publisher_emotion_button" />
 
         <LinearLayout
