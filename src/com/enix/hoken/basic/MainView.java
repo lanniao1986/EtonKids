@@ -1,5 +1,8 @@
 package com.enix.hoken.basic;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.app.ProgressDialog;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.Editable;
@@ -49,7 +52,7 @@ public abstract class MainView {
 
 	public ImageView mFlip;
 	public ImageView mMenu;
-
+	public ImageView mDelete;
 	public TextView mExtend1;
 	public TextView mExtend2;
 
@@ -72,6 +75,8 @@ public abstract class MainView {
 	public View mView;
 	public TextWatcher mTextWatcher;
 	public boolean isFirstLoad = true;// 是否初次加载界面 (耗时工作将再侧栏close()时调用)
+	public boolean checkable = false;// 是否选择开启模式
+	public HashMap<Integer, Boolean> mSelectMap = new HashMap<Integer, Boolean>();// 多选模式选中对象索引值对
 
 	// 筛选文本框编辑事件侦听器
 
@@ -101,6 +106,7 @@ public abstract class MainView {
 		mExtend1 = (TextView) headBar.findViewById(R.id.head_bar_extend1);
 		mExtend2 = (TextView) headBar.findViewById(R.id.head_bar_extend2);
 		mMenu = (ImageView) headBar.findViewById(R.id.head_bar_menu);
+		mDelete = (ImageView) headBar.findViewById(R.id.head_bar_delete);
 		mEditFilter = (EditText) headBar
 				.findViewById(R.id.head_bar_edit_filler);
 		mFilterLinear = (LinearLayout) headBar
@@ -260,4 +266,41 @@ public abstract class MainView {
 	}
 
 	public abstract void init();
+
+	/**
+	 * 开启关闭选择模式
+	 * 
+	 * @param checkable
+	 *            //当前选择模式是否开启
+	 * @param mSelectMap
+	 *            //选中对象索引值对
+	 */
+	public void switchMultiChooice() {
+		mActivity.vibrator.vibrate(60);
+		if (checkable) {
+			checkable = false;
+			mExtend1.setVisibility(View.INVISIBLE);
+			mExtend2.setVisibility(View.INVISIBLE);
+			mSelectMap.clear();
+			mMenu.setVisibility(View.VISIBLE);
+			mDelete.setVisibility(View.GONE);
+			multiChooiceOff();
+		} else {
+			checkable = true;
+			mExtend1.setVisibility(View.VISIBLE);
+			mExtend1.setText("全选");
+			mExtend2.setVisibility(View.VISIBLE);
+			mExtend2.setText("清除");
+			mMenu.setVisibility(View.GONE);
+			mDelete.setVisibility(View.VISIBLE);
+			multiChooiceOn();
+		}
+	}
+
+	public void multiChooiceOn() {
+	}
+
+	public void multiChooiceOff() {
+	}
+
 }

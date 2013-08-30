@@ -1,6 +1,8 @@
 package com.enix.hoken.custom.adapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.tsz.afinal.FinalBitmap;
 
@@ -32,6 +34,7 @@ public class DownloadListAdapter extends MainAdapter implements
 	private ArrayList<DownloadTask> mTaskList;
 	private FinalBitmap fb;
 	public boolean checkMode = false;
+	private Map<Integer, Boolean> mSelectMap = new HashMap<Integer, Boolean>();
 
 	public DownloadListAdapter(MainActivity mActivity, DinfoList mMainInfoList) {
 		super(mActivity, mMainInfoList);
@@ -52,6 +55,14 @@ public class DownloadListAdapter extends MainAdapter implements
 
 	public void setCheckMode(boolean checkMode) {
 		this.checkMode = checkMode;
+	}
+
+	public Map<Integer, Boolean> getmSelectMap() {
+		return mSelectMap;
+	}
+
+	public void setmSelectMap(Map<Integer, Boolean> mSelectMap) {
+		this.mSelectMap = mSelectMap;
 	}
 
 	private void setInfoToAppData() {
@@ -152,6 +163,17 @@ public class DownloadListAdapter extends MainAdapter implements
 			holder.mLaunch.setVisibility(View.GONE);
 			break;
 		}
+		if (isCheckMode()) {// 选择模式下 选择框可见
+			holder.mCheckBox.setVisibility(View.VISIBLE);
+			holder.setChecked(mSelectMap.get(position) == null ? false
+					: mSelectMap.get(position));
+			holder.mContinue.setVisibility(View.GONE);
+			holder.mPause.setVisibility(View.GONE);
+			holder.mLaunch.setVisibility(View.GONE);
+		} else {
+			holder.mCheckBox.setVisibility(View.GONE);
+		}
+
 		holder.mProgressBar.setMax((int) mDinfo.getTotalsize());
 		holder.mProgressBar.setProgress((int) mDinfo.getPresize());
 		// 暂停下载按钮事件
@@ -176,8 +198,6 @@ public class DownloadListAdapter extends MainAdapter implements
 						.getmDinfo().getUrl());
 			}
 		});
-		convertView
-				.setOnLongClickListener(new checkOnLongClickListener(holder));
 		return convertView;
 	}
 
@@ -281,22 +301,8 @@ public class DownloadListAdapter extends MainAdapter implements
 		notifyDataSetChanged();
 	}
 
-	private class checkOnLongClickListener implements OnLongClickListener {
-		ViewHolder vh;
-
-		public checkOnLongClickListener(ViewHolder vh) {
-			this.vh = vh;
-		}
-
-		@Override
-		public boolean onLongClick(View view) {
-			// TODO Auto-generated method stub
-			vh.mCheckBox.setVisibility(View.VISIBLE);
-			vh.mContinue.setVisibility(View.GONE);
-			vh.mPause.setVisibility(View.GONE);
-			vh.mLaunch.setVisibility(View.GONE);
-			return false;
-		}
-
+	public void notifyDataSetChanged(Map<Integer, Boolean> mSelectMap) {
+		this.mSelectMap = mSelectMap;
+		notifyDataSetChanged();
 	}
 }

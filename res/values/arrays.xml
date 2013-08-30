@@ -80,5 +80,8 @@
         <item>重置档案</item>
         <item>删除档案</item>
     </string-array>
+    <string-array name="download_setting_menu_strings">
+        <item>删除任务</item>
+    </string-array>
 
 </resources>

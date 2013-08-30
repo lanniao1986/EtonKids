@@ -1,23 +1,27 @@
 package com.enix.hoken.custom.mainview;
 
 import java.text.SimpleDateFormat;
-
+import java.util.HashMap;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View.*;
 import android.view.*;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import com.enix.hoken.activity.DesktopActivity;
 import com.enix.hoken.activity.DownloadListActivity;
 import com.enix.hoken.basic.MainView;
+import com.enix.hoken.basic.MultiChoiceIF;
 import com.enix.hoken.R;
 import com.enix.hoken.custom.adapter.DownloadListAdapter;
 import com.enix.hoken.info.*;
 import com.enix.hoken.util.CommonUtil;
 
-public class DownLoadMainView extends MainView {
+public class DownLoadMainView extends MainView implements MultiChoiceIF {
 
 	public static final int MODE_DOWNLOAD_COMPLETE = 1;// 下载完成列表
 	private ListView mDownLoadList;
@@ -38,7 +42,6 @@ public class DownLoadMainView extends MainView {
 
 	public DownLoadMainView(DesktopActivity activity) {
 		super(activity, R.layout.lay_download);
-
 		findView();
 		initView();
 		setListener();
@@ -77,6 +80,62 @@ public class DownLoadMainView extends MainView {
 				}
 			}
 		});
+		// 长按下载列表 进入多选模式
+		mDownLoadList.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				switchMultiChooice();
+				return false;
+			}
+		});
+		mDownLoadList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapterview, View view,
+					int i, long l) {
+				if (checkable) {// 多选状态时
+					// 切换选择状态
+					if (mSelectMap.get(i) == null ? false : mSelectMap.get(i)) {
+						mSelectMap.put(i, false);
+					} else {
+						mSelectMap.put(i, true);
+					}
+					mDownloadListAdapter.setmSelectMap(mSelectMap);
+					mDownloadListAdapter.notifyDataSetChanged();
+				}
+			}
+		});
+		// 全选按钮点击事件
+		mExtend1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				for (int i = 0; i < mDownLoadList.getCount(); i++) {
+					mSelectMap.put(i, true);
+				}
+				mDownloadListAdapter.notifyDataSetChanged(mSelectMap);
+			}
+		});
+		// 清除按钮点击事件
+		mExtend2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				for (int i = 0; i < mDownLoadList.getCount(); i++) {
+					mSelectMap.put(i, false);
+				}
+				mDownloadListAdapter.notifyDataSetChanged(mSelectMap);
+			}
+		});
+		// 弹出子菜单点击事件
+		mMenuListView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				mMenuPopupWindow.dismiss();
+				if (checkable) {// 多选模式下
+
+				}
+			}
+		});
+
 	}
 
 	public void initView() {
@@ -106,6 +165,8 @@ public class DownLoadMainView extends MainView {
 				break;
 			case MODE_DOWNLOAD_COMPLETE:// 已完成列表
 				initCompleteList();
+				mMenuName = mActivity.getResources().getStringArray(
+						R.array.download_setting_menu_strings);
 				break;
 			}
 		}
@@ -127,4 +188,19 @@ public class DownLoadMainView extends MainView {
 		mDownloadListAdapter.addDownloadItem(url, name, imgurl);
 	}
 
+	@Override
+	public void multiChooiceOff() {
+		// TODO Auto-generated method stub
+		super.multiChooiceOff();
+		mDownloadListAdapter.setCheckMode(checkable);
+		mDownloadListAdapter.notifyDataSetChanged(mSelectMap);
+	}
+
+	@Override
+	public void multiChooiceOn() {
+		// TODO Auto-generated method stub
+		super.multiChooiceOn();
+		mDownloadListAdapter.setCheckMode(checkable);
+		mDownloadListAdapter.notifyDataSetChanged(mSelectMap);
+	}
 }

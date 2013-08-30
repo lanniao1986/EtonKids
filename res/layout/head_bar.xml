@@ -89,6 +89,16 @@
             android:clickable="true"
             android:scaleType="centerInside"
             android:src="@drawable/flipper_head_menu" />
+
+        <ImageView
+            android:id="@+id/head_bar_delete"
+            android:layout_width="54dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/flipper_head_title_wrapper_background"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/item_delete"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
